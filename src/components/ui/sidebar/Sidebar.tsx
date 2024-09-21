@@ -1,31 +1,49 @@
 'use client';
 
-import Link from 'next/link';
 import React from 'react'
 import { IoPersonOutline, IoCloseOutline, IoLogInOutline, IoLogOutOutline, IoPeopleOutline, IoSearchOutline, IoShirtOutline, IoTicketOutline } from 'react-icons/io5'
-
 import { SidebarItem } from './SidebarItem';
+import { useUIStore } from '@/store';
+import { clsx } from 'clsx';
 
 export const Sidebar = () => {
+
+        const isSidebarOpen = useUIStore(state => state.isSidebarOpen);
+        const closeMenu = useUIStore( state => state.closeSidebar);
+       
+
   return (
     <div>
 
-      {/* black bg */}
-      <div 
-        className='fixed top-0 left-0 w-screen h-screen z-10 bg-black opacity-30'
-       />
+      { isSidebarOpen && (
+        //  black bg 
+          <div 
+          className='fixed top-0 left-0 w-screen h-screen z-10 bg-black opacity-30'
+         />
+      )}
 
-      {/* blur */}
-      <div 
+      { isSidebarOpen && (
+        //  blur effect
+        <div 
+        onClick={closeMenu}
         className='fade-in fixed top-0 left-0 w-screen h-screen z-10 backdrop-filter backdrop-blur-sm'
       /> 
+      )}
+     
         {/* SideMsanu */}
         <nav
           // slide effect
-          className='fixed p-5 right-0 top-0 w-[500px] h-screen bg-purple-50 z-20  shadow-2xl transform transition-all duration-300'
+          className={
+            clsx(
+              'fixed p-5 right-0 top-0 w-[500px] h-screen bg-purple-50 z-20  shadow-2xl transform transition-all duration-300',
+              {
+                "translate-x-full": !isSidebarOpen
+              }
+            )
+          }
         >
           <IoCloseOutline 
-            onClick={()=> console.log('click')}
+            onClick={closeMenu }
             className='absolute top-5 right-5 cursor-pointer' 
             size={50}
           />
