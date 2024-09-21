@@ -8,7 +8,7 @@ export default function Home() {
     <Title 
       title='Shop'
       subtitle='All Products'
-      className='mx-5 mb-2'
+      className='mb-2'
     />
    </>
   );
