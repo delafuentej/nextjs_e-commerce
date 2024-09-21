@@ -2,8 +2,9 @@
 
 import Link from 'next/link';
 import React from 'react'
-import { IoCloseOutline, IoLogInOutline, IoLogOutOutline, IoPeopleOutline, IoPersonOutline, IoSearchOutline, IoShirtOutline, IoTicketOutline } from 'react-icons/io5'
-import Login from '../../../app/auth/login/page';
+import { IoPersonOutline, IoCloseOutline, IoLogInOutline, IoLogOutOutline, IoPeopleOutline, IoSearchOutline, IoShirtOutline, IoTicketOutline } from 'react-icons/io5'
+
+import { SidebarItem } from './SidebarItem';
 
 export const Sidebar = () => {
   return (
@@ -48,79 +49,58 @@ export const Sidebar = () => {
           {/* options menu */}
 
           {/* profile */}
-          <Link
+          <SidebarItem 
             href='/'
-            className='flex items-center mt-10 p-2 hover:bg-purple-200 rounded transition-all'
-          >
-            <IoPersonOutline 
-              size={30}
-            />
-            <span className='text-xl ml-3'>Profile</span>
-          </Link>
+            label='Profile'
+            icon={IoPersonOutline}
+          />
+          
             {/* orders */}
-          <Link
+            <SidebarItem 
             href='/'
-            className='flex items-center mt-10 p-2 hover:bg-purple-200 rounded transition-all'
-          >
-            <IoTicketOutline 
-              size={30}
-            />
-            <span className='text-xl ml-3'>Orders</span>
-          </Link>
+            label='Orders'
+            icon={IoTicketOutline}
+          />
+
+         
           {/* login */}
-          <Link
+          <SidebarItem 
             href='/'
-            className='flex items-center mt-10 p-2 hover:bg-purple-200 rounded transition-all'
-          >
-            <IoLogInOutline 
-              size={30}
-            />
-            <span className='text-xl ml-3'>Login</span>
-          </Link>
+            label='Login'
+            icon={IoLogInOutline}
+          />
+
           {/* logout */}
-          <Link
+          <SidebarItem 
             href='/'
-            className='flex items-center mt-10 p-2 hover:bg-purple-200 rounded transition-all'
-          >
-            <IoLogOutOutline
-              size={30}
-            />
-            <span className='text-xl ml-3'>Logout</span>
-          </Link>
+            label='Logout'
+            icon={IoLogOutOutline}
+          />
+
 
           {/* separator */}
           <div className='w-full h-px bg-purple-300 my-10'/>
           {/* admin menu */}
             {/* products */}
-          <Link
+            <SidebarItem 
             href='/'
-            className='flex items-center mt-10 p-2 hover:bg-purple-200 rounded transition-all'
-          >
-            <IoShirtOutline
-              size={30}
-            />
-            <span className='text-xl ml-3'>Products</span>
-          </Link>
+            label='Products'
+            icon={IoShirtOutline}
+          />
+          
           {/* orders */}
-          <Link
+          <SidebarItem 
             href='/'
-            className='flex items-center mt-10 p-2 hover:bg-purple-200 rounded transition-all'
-          >
-            <IoTicketOutline
-              size={30}
-            />
-            <span className='text-xl ml-3'>Products</span>
-          </Link>
+            label='Orders'
+            icon={IoTicketOutline}
+          />
+          {/* users: clients */}
+          <SidebarItem 
+            href='/'
+            label='Clients'
+            icon={IoPeopleOutline}
+          />
 
-          <Link
-            href='/'
-            className='flex items-center mt-10 p-2 hover:bg-purple-200 rounded transition-all'
-          >
-            <IoPeopleOutline
-              size={30}
-            />
-            <span className='text-xl ml-3'>Clients</span>
-          </Link>
 
         </nav>
       
