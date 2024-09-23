@@ -2,6 +2,7 @@ import { QuantitySelector, Title } from "@/components";
 import { initialData } from "@/seed/seed";
 import Image from "next/image";
 import Link from "next/link";
+import { redirect } from "next/navigation";
 import { IoCartOutline, IoAddCircleSharp, IoBagOutline } from "react-icons/io5";
 
 const productsInCart = [
@@ -9,8 +10,14 @@ const productsInCart = [
   initialData.products[5],
   initialData.products[8],
 ];
-
+console.log(productsInCart.length)
 export default function Cart() {
+
+  if(productsInCart.length === 0){
+      redirect('/empty')
+  }
+
+ 
   return (
     <div className="flex justify-center items-center mb-72 px-10 sm:px-0">
       <div className="flex flex-col w-[1000px]">

@@ -1,8 +1,8 @@
-import { QuantitySelector, Title } from "@/components";
+import { Title } from "@/components";
 import { initialData } from "@/seed/seed";
 import Image from "next/image";
 import Link from "next/link";
-import {  IoAddCircleSharp, IoBagCheckOutline, IoBagOutline, IoCartOutline, IoCheckboxOutline, IoPencilOutline } from "react-icons/io5";
+import {   IoBagCheckOutline, IoCartOutline,  IoPencilOutline } from "react-icons/io5";
 
 
 const productsInCart = [
