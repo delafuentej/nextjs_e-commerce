@@ -58,7 +58,9 @@ export default function Product({params}:Props) {
           />
 
           {/* button : add to cart */}
-          <button className="btn bg-purple-500 font-bold text-white py-2 px-4 rounded
+          <button 
+          
+          className="btn bg-purple-500 font-bold text-white py-2 px-4 rounded
            my-5 hover:bg-purple-900">
             Add to Cart
           </button>
