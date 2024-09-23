@@ -2,7 +2,7 @@ import { QuantitySelector, Title } from "@/components";
 import { initialData } from "@/seed/seed";
 import Image from "next/image";
 import Link from "next/link";
-import { IoCartOutline, IoCart, IoAddOutline, IoAddCircleSharp, IoFingerPrintSharp, IoHandRightSharp, IoFingerPrintOutline, IoHandLeftOutline, IoBagHandle, IoBagAddOutline, IoBagOutline } from "react-icons/io5";
+import { IoCartOutline, IoAddCircleSharp, IoBagOutline } from "react-icons/io5";
 
 const productsInCart = [
   initialData.products[0],
@@ -53,13 +53,13 @@ export default function Cart() {
               <IoBagOutline size={30}/>
               Keep Shopping
             </Link>
-          </div>
+        
 
           {/* items  */}
             {
               productsInCart.map( product => (
                 <div 
-                className="flex border-purple-900 p-2"
+                className="flex bg-white border-purple-900 p-2 mb-5 shadow-lg rounded-md"
                 key={product.slug}
                 >
                   <Image 
@@ -68,6 +68,10 @@ export default function Cart() {
                     width={100}
                     height={100}
                     alt={product.title}
+                    style={{
+                      width: '100px',
+                      height: '100px',
+                    }}
                   />
 
                   <div>
@@ -87,8 +91,36 @@ export default function Cart() {
                 </div>
               ))
             }
-
+            </div>
           {/* checkout */}
+          <div className="bg-white rounded-xl shadow-xl p-7">
+            <h2 className="text-2xl mb-2 text-center">Order Overview</h2>
+            <div className="grid grid-cols-2">
+
+              <span>N° Items</span>
+              <span className="text-right">3 Items</span>
+
+              <span>Subtotal</span>
+              <span className="text-right">200 €</span>
+
+              <span>Taxes (15%)</span>
+              <span className="text-right">30 €</span>
+            
+              <span className="text-2xl mt-5">Total:</span>
+              <span className="text-2xl mt-5 text-right">230 €</span>
+
+            </div>
+
+            <div className="mt-5 mb-2 w-full bg-purple-500 font-bold hover:bg-purple-300 text-center text-white p-2 rounded">
+              <Link
+              className="text-center"
+              href='/checkout/address'
+              >Checkout
+              </Link>
+            </div>
+
+          </div>
+
 
         </div>
       </div>
