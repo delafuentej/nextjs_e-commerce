@@ -1,6 +1,6 @@
 'use client';
 
-import { titleFront } from '@/config/fonts'
+import { titleFont } from '@/config/fonts'
 import { useUIStore } from '@/store'
 import Link from 'next/link'
 import React from 'react'
@@ -17,7 +17,7 @@ export const TopMenu = () => {
         <Link
          href="/"
          >
-          <span className={`${titleFront.className} antialiased font-bold`}>PASSION</span>
+          <span className={`${titleFont.className} antialiased font-bold`}>PASSION</span>
           <span> | Online-Shop</span>
         </Link>
       </div>

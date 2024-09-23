@@ -1,4 +1,4 @@
-import { titleFront } from '@/config/fonts'
+import { titleFont } from '@/config/fonts'
 import Link from 'next/link'
 import Image from 'next/image'
 
@@ -11,7 +11,7 @@ export const PageNotFound = () => {
       <div 
         className='text-center px-5 mx-5'
       >
-        <h2 className={`${titleFront.className} antialiased text-9xl` }>404</h2>
+        <h2 className={`${titleFont.className} antialiased text-9xl` }>404</h2>
         <p className='font-semibold text-3xl'>Whoops! We are very sorry for this!</p>
         <p
         className='font-light'
