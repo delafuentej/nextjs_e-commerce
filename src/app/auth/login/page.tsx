@@ -11,13 +11,13 @@ export default function Login() {
 
         <label htmlFor="email">E-Mail</label>
         <input
-          className="px-5 py-2 border bg-gray-200 rounded mb-5"
+          className="px-5 py-2 border bg-purple-100 rounded mb-5"
           type="email" />
 
 
         <label htmlFor="email">Password</label>
         <input
-          className="px-5 py-2 border bg-gray-200 rounded mb-5"
+          className="px-5 py-2 border bg-purple-100 rounded mb-5"
           type="email" />
 
         <button
