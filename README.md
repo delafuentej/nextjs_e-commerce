@@ -9,6 +9,7 @@
 3. Install dependencies: ```npm install```
 4. Launch the DB: ```docker compose up -d```
 5. Run prisma's migrations: ```npx prisma migrate dev```
-5. Launch the application: ```npm run dev```
+6. Execute command SEED ```npm run seed```
+6. Launch the application: ```npm run dev```
 
 ## Bringin-Up in prod mode. 
