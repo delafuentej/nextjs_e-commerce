@@ -19,8 +19,15 @@ async function main() {
    await prisma.category.createMany({
     data: categoriesData
    });
-   console.log('categoriesData', categoriesData)
+   
+   const categoriesDB = await prisma.category.findMany();
 
+   const categoriesMap = categoriesDB.reduce((map, category)=> {
+      map[category.name.toLocaleLowerCase()] = category.id;
+      return map;
+   }, {} as Record<string, string>) // <string ='shirt', string= categoryId=>
+
+   console.log('categoriesMap', categoriesMap);
    console.log('SEED Executed');
 }
 
