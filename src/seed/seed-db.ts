@@ -3,12 +3,12 @@ import prisma from '../lib/prisma';
 
 async function main() {
    //delete previous records : tables
-   await Promise.all([
-     prisma.productImage.deleteMany(),
-     prisma.product.deleteMany(),
-     prisma.category.deleteMany(),
+  // await Promise.all([
+     await prisma.productImage.deleteMany();
+     await prisma.product.deleteMany();
+     await prisma.category.deleteMany();
  
-   ]);
+  // ]);
    // categories
    const {categories, products } = initialData;
    const categoriesData = categories.map((name) => ({name}))
@@ -41,6 +41,15 @@ async function main() {
             categoryId: categoriesMap[type]
          }
       })
+
+       // images: 
+   const imagesData = images.map( image => ({
+      url: image,
+      productId: dbProduct.id
+   }))
+   await prisma.productImage.createMany({
+      data: imagesData
+   })
    })
 
    // await prisma.product.create({
@@ -50,6 +59,8 @@ async function main() {
    //    }
    // })
   // console.log('product1', product1)
+
+ 
    console.log('SEED Executed');
 }
 
