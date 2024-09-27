@@ -4,6 +4,7 @@ export {PageNotFound} from './ui/not-found/PageNotFound';
 export {Title} from './ui/title/Title';
 export {Sidebar} from './ui/sidebar/Sidebar';
 export {SidebarItem} from './ui/sidebar/SidebarItem';
+export {Pagination} from './ui/pagination/Pagination';
 export {Footer } from './ui/footer/Footer';
 //products
 export {ProductsGrid} from './products/products-grid/ProductsGrid';
