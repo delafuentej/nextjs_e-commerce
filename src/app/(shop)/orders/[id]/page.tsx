@@ -60,7 +60,7 @@ export default function Orders( { params }: Props ) {
 
 
 
-            {/* Items */ }
+            {/* items */ }
             {
               productsInCart.map( product => (
 
