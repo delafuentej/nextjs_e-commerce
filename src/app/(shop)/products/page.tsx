@@ -2,7 +2,7 @@
 export default function Products() {
   return (
     <div>
-      <h1>Product's List Page</h1>
+      <h1>Products List Page</h1>
     </div>
   );
 }

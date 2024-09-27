@@ -1,5 +1,7 @@
 //import { notFound } from "next/navigation";
 //import {initialData }from '@/seed/seed';
+export const revalidate = 60; //60 seconds
+
 import { Pagination, Title, ProductsGrid } from '@/components';
 import { getPaginatedProductsWithImages } from '@/actions';
 import { redirect } from 'next/navigation';
