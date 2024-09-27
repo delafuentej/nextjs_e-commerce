@@ -1,12 +1,15 @@
+import { getPaginatedProductsWithImages } from "@/actions";
 import { ProductsGrid, Title } from "@/components";
 import { initialData } from "@/seed/seed";
 
 
-const products = initialData.products;
-console.log('products', products)
+const products2 = initialData.products;
+//console.log('products', products)
 
 
-export default function Home() {
+export default async function Home() {
+
+  const products = await getPaginatedProductsWithImages();
   return (
    <>
     <Title 
@@ -16,7 +19,7 @@ export default function Home() {
     />
      {/* { (JSON.stringify(products))} */}
      <ProductsGrid 
-      products={products}
+      products={products2}
      />
 
    </>
