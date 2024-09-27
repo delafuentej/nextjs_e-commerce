@@ -1,5 +1,6 @@
 import { getPaginatedProductsWithImages } from "@/actions";
 import { ProductsGrid, Title } from "@/components";
+import { redirect } from "next/navigation";
 //import { initialData } from "@/seed/seed";
 
 
@@ -17,7 +18,10 @@ export default async function Home({searchParams}:Props) {
   console.log('searchParams', searchParams)
   const page = searchParams.page ? parseInt(searchParams.page) : 1;
 
-  const {products} = await getPaginatedProductsWithImages({ page });
+  const {products, currentPage, totalPages} = await getPaginatedProductsWithImages({ page });
+
+  console.log('currentPage', currentPage, 'totalPages', totalPages)
+  if(products.length === 0) redirect('/');
   //console.log('products', products)
   return (
    <>
