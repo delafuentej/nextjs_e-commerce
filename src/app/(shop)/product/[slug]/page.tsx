@@ -1,10 +1,12 @@
 export const revalidate = 604800;// seven days 60*60*24*7
 
 import { getProductBySlug } from "@/actions";
-import { QuantitySelector, SizeSelector, ProductSlideshow, ProductMobileSlideshow } from "@/components";
+import { QuantitySelector, SizeSelector, ProductSlideshow, ProductMobileSlideshow, StockLabel } from "@/components";
 import { titleFont } from "@/config/fonts";
+
 //import { initialData } from "@/seed/seed";
 import { notFound } from "next/navigation";
+
 
 
 interface Props {
@@ -48,6 +50,12 @@ export default async function Product({params}:Props) {
       <div className="col-span-1 px-5"> 
           {/* puduct title */}
         <h1 className={`${titleFont.className} antialiased font-bold text-xl`}> {product.title}</h1>
+
+        {/* stock label */}
+        <StockLabel  slug={product.slug}/>
+
+       
+
           {/* product price */}
           <p className="text-lg mb-1.5">{product.price} €</p>
 
