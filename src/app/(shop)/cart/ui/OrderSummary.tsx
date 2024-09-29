@@ -1,9 +1,10 @@
 'use client';
 
-
+import Link from "next/link";
 import {  useEffect, useState} from "react";
 import { useCartStore } from "@/store";
-import Link from "next/link";
+import { currencyFormat } from "@/utils/currencyFormat";
+
 
 export const OrderSummary = () => {
 
@@ -42,13 +43,13 @@ export const OrderSummary = () => {
       </span>
 
       <span className="font-bold">Subtotal</span>
-      <span className="text-right">{`${subTotal} €`}</span>
+      <span className="text-right">{`${currencyFormat(subTotal)}`}</span>
 
       <span className="font-bold">Taxes (15%)</span>
-      <span className="text-right">{`${taxes} €`}</span>
+      <span className="text-right">{`${currencyFormat(taxes)}`}</span>
     
       <span className="text-2xl mt-5 font-bold">Total:</span>
-      <span className="text-2xl mt-5 text-right font-bold">{`${total} €`}</span>
+      <span className="text-2xl mt-5 text-right font-bold">{`${currencyFormat(total)}`}</span>
 
     </div>
     <div className="mt-5 mb-2 w-full bg-purple-500 font-bold hover:bg-purple-300 text-center text-white p-2 rounded">
