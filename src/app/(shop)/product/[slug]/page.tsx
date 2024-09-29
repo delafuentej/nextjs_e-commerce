@@ -8,6 +8,7 @@ import { titleFont } from "@/config/fonts";
 
 //import { initialData } from "@/seed/seed";
 import { notFound } from "next/navigation";
+import { AddToCart } from "./ui/AddToCart";
 
 
 
@@ -87,24 +88,12 @@ export default async function Product({params}:Props) {
           {/* product price */}
           <p className="text-lg mb-1.5">{product.price} €</p>
 
-          {/* size selector */}
-          <SizeSelector 
-            availableSizes={product.sizes}
-            selectedSize={product.sizes[2]}
+        {/* Add to Cart */}
+          <AddToCart 
+            product={product}
           />
-
-          {/* quantity selector */}
-          <QuantitySelector
-            quantity={1}
-          />
-
-          {/* button : add to cart */}
-          <button 
-          
-          className="btn bg-purple-500 font-bold text-white py-2 px-4 rounded
-           my-5 hover:bg-purple-900">
-            Add to Cart
-          </button>
+         
+        
 
           {/* article description */}
           <h3 className="text-sm font-bold">Description</h3>

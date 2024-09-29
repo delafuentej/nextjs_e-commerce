@@ -3,12 +3,14 @@ import clsx from "clsx";
 
 interface Props {
     availableSizes: Size[];
-    selectedSize: Size;
+    selectedSize?: Size;
+
+    onSizeSelected: (size: Size) => void;
    
 }
 
 
-export const SizeSelector = ({availableSizes, selectedSize}: Props) => {
+export const SizeSelector = ({availableSizes, selectedSize, onSizeSelected}: Props) => {
   return (
     <div className="my-5 ">
         <h3 className="mb-4 font-bold">Available Sizes</h3>
@@ -16,6 +18,7 @@ export const SizeSelector = ({availableSizes, selectedSize}: Props) => {
         <div className="flex mr-1">
             {availableSizes.map( (size) => (
                 <button
+                    onClick={() => onSizeSelected(size)}
                     className={ 
                         clsx(
                             "mx-2 text-lg",
