@@ -3,7 +3,6 @@
 import Link from "next/link";
 import { redirect } from "next/navigation";
 import { Title } from "@/components";
-import { initialData } from "@/seed/seed";
 import { IoCartOutline, IoAddCircleSharp, IoBagOutline } from "react-icons/io5";
 import { ProductsInCart } from "./ui/ProductsInCart";
 import { OrderSummary } from "./ui/OrderSummary";

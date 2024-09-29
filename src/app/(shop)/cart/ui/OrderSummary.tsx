@@ -8,8 +8,12 @@ import Link from "next/link";
 export const OrderSummary = () => {
 
     const[loaded, setLoaded] = useState<boolean>(false);
-    
-   const { totalItems, total, subTotal, taxes} = useCartStore((state) => state.getSummaryInfo());
+    // code to fix the Error : Error: Maximum update depth exceeded.
+    const total = useCartStore((state) => state.getSummaryInfo().total);
+    const totalItems = useCartStore((state) => state.getSummaryInfo().totalItems);
+    const subTotal = useCartStore((state) => state.getSummaryInfo().subTotal);
+    const taxes = useCartStore((state) => state.getSummaryInfo().taxes);
+  // const { totalItems, total, subTotal, taxes} = useCartStore((state) => state.getSummaryInfo());
 
        // Memorize summary values to avoid unnecessary rerenderings
       //  const summaryInfo = useCartStore((state) => state.getSummaryInfo());
@@ -22,7 +26,7 @@ export const OrderSummary = () => {
         setLoaded(true);
     },[]);
 
-    if(loaded){
+    if(!loaded){
         <p>Loading...</p>
     }
     
@@ -32,19 +36,19 @@ export const OrderSummary = () => {
     <h2 className="text-2xl mb-2 font-bold text-center">Order Summary</h2>
     <div className="grid grid-cols-2">
 
-      <span>N° Items</span>
+      <span className="font-bold">N° Items</span>
       <span className="text-right">
         {totalItems === 1 ? '1 Item'  : `${totalItems} Items`}
       </span>
 
-      <span>Subtotal</span>
+      <span className="font-bold">Subtotal</span>
       <span className="text-right">{`${subTotal} €`}</span>
 
-      <span>Taxes (15%)</span>
+      <span className="font-bold">Taxes (15%)</span>
       <span className="text-right">{`${taxes} €`}</span>
     
-      <span className="text-2xl mt-5">Total:</span>
-      <span className="text-2xl mt-5 text-right">{`${total} €`}</span>
+      <span className="text-2xl mt-5 font-bold">Total:</span>
+      <span className="text-2xl mt-5 text-right font-bold">{`${total} €`}</span>
 
     </div>
     <div className="mt-5 mb-2 w-full bg-purple-500 font-bold hover:bg-purple-300 text-center text-white p-2 rounded">
