@@ -3,13 +3,20 @@
 import { titleFont } from '@/config/fonts'
 import { useCartStore, useUIStore } from '@/store'
 import Link from 'next/link'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { IoSearchOutline, IoCartOutline } from 'react-icons/io5'
 
 export const TopMenu = () => {
 
   const openMenu = useUIStore( state => state.openSidebar);
   const totalItems = useCartStore ( state => state.getTotalItems());
+
+  //useState => to obtain totalItems from client side
+  const [loaded, setLoaded] = useState(false);
+
+  useEffect(()=> {
+    setLoaded(true);
+  },[]);
 
   return (
     <nav className='flex px-5 justify-between items-center w-full'>
@@ -66,7 +73,7 @@ export const TopMenu = () => {
           <div className='relative'>
             {/* span => num. items in shopping-cart */}
             {
-             ( totalItems > 0) && (
+             (loaded && totalItems > 0) && (
               <span 
                 className='absolute text-xs rounded-full px-1 font-bold -top-2 -right-2 text-white bg-purple-500'>
                 {totalItems}
