@@ -1,21 +1,18 @@
-import { QuantitySelector, Title } from "@/components";
-import { initialData } from "@/seed/seed";
-import Image from "next/image";
+
+
 import Link from "next/link";
 import { redirect } from "next/navigation";
+import { Title } from "@/components";
+import { initialData } from "@/seed/seed";
 import { IoCartOutline, IoAddCircleSharp, IoBagOutline } from "react-icons/io5";
+import { ProductsInCart } from "./ui/ProductsInCart";
+import { OrderSummary } from "./ui/OrderSummary";
 
-const productsInCart = [
-  initialData.products[0],
-  initialData.products[5],
-  initialData.products[8],
-];
-console.log(productsInCart.length)
 export default function Cart() {
 
-  if(productsInCart.length === 0){
-      redirect('/empty')
-  }
+  // if(productsInCart.length === 0){
+  //     redirect('/empty')
+  // }
 
  
   return (
@@ -30,11 +27,6 @@ export default function Cart() {
           /> 
          
       </div>
-       
-
-      
-       
-
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-10">
           {/* cart */}
           <div
@@ -63,70 +55,14 @@ export default function Cart() {
         
 
           {/* items  */}
-            {
-              productsInCart.map( product => (
-                <div 
-                className="flex bg-white border-purple-900 p-2 mb-5 shadow-lg rounded-md"
-                key={product.slug}
-                >
-                  <Image 
-                    src={`/products/${product.images[0]}`}
-                    className="mr-5 rounded"
-                    width={100}
-                    height={100}
-                    alt={product.title}
-                    style={{
-                      width: '100px',
-                      height: '100px',
-                    }}
-                  />
-
-                  <div>
-                    <p className="font-bold">{product.title}</p>
-                    <p>{`${product.price} €`}</p>
-                    <QuantitySelector 
-                    quantity={1}
-                    />
-
-                    <button 
-                    className="mt-3 bg-purple-500 hover:bg-purple-300 text-white p-2 rounded-lg"
-                    >
-                      Remove
-                    </button>
-                  </div>
-
-                </div>
-              ))
-            }
+            <ProductsInCart />
             </div>
+
+
           {/* checkout  className = absolute top-10 right-10*/}
-          <div className=" bg-white rounded-xl shadow-xl p-7 h-fit">
-            <h2 className="text-2xl mb-2 text-center">Order Overview</h2>
-            <div className="grid grid-cols-2">
+           <OrderSummary />
 
-              <span>N° Items</span>
-              <span className="text-right">3 Items</span>
-
-              <span>Subtotal</span>
-              <span className="text-right">200 €</span>
-
-              <span>Taxes (15%)</span>
-              <span className="text-right">30 €</span>
-            
-              <span className="text-2xl mt-5">Total:</span>
-              <span className="text-2xl mt-5 text-right">230 €</span>
-
-            </div>
-
-            <div className="mt-5 mb-2 w-full bg-purple-500 font-bold hover:bg-purple-300 text-center text-white p-2 rounded">
-              <Link
-              className="text-center"
-              href='/checkout/address'
-              >Checkout
-              </Link>
-            </div>
-
-          </div>
+         
 
 
         </div>
