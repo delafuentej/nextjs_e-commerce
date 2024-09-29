@@ -7,8 +7,12 @@ import { persist } from "zustand/middleware";
 interface State {
     cart: CartProduct[];
 
+
+
     //methods:
-   addProductToCart : (product: CartProduct)=> void;
+
+    getTotalItems: () => number;
+   addProductToCart: (product: CartProduct)=> void;
     // updateProductQuantity
     // removeProductFromChart
 
@@ -25,6 +29,10 @@ export const useCartStore =  create<State>()(
         cart: [],
         
         // methods:
+        getTotalItems: () => {
+            const {cart} = get();
+            return cart.reduce((total, item)=> total + item.quantity,0)
+        },
         addProductToCart: (product: CartProduct) => {
             const {cart} = get();
             console.log('cart', cart);
@@ -55,7 +63,8 @@ export const useCartStore =  create<State>()(
     })
 
     , {
-        name: 'shopping-cart'
+        name: 'shopping-cart',
+        //skipHydration: true,
     }
    )
 )
