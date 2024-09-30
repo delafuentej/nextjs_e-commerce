@@ -17,11 +17,14 @@ export const authConfig : NextAuthConfig= {
             })
             .safeParse(credentials);
 
+            console.log('parsedCredentials.success', parsedCredentials.success)
+
             if( !parsedCredentials.success) return null;
+
 
             const { email, password } = parsedCredentials.data;
 
-            console.log({email, password});
+            console.log('authConfig',{email, password});
             // search the email
 
             // compare the passwords
