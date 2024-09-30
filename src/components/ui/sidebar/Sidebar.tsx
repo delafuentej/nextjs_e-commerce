@@ -16,6 +16,8 @@ export const Sidebar = () => {
 
         //to obtain the session from client side
         const {data: session} = useSession();
+
+        const isAuthenticated : boolean = !!session?.user;
        //console.log('session', session)
 
   return (
@@ -86,23 +88,31 @@ export const Sidebar = () => {
             label='Orders'
             icon={IoTicketOutline}
           />
-
+           {
+              isAuthenticated ? (
+                    // logout
+                <SidebarItem 
+                href='/'
+                label='Logout'
+                icon={IoLogOutOutline}
+               onClick = {() => logout()}
+        />
+              ) :
+              (
+                // login
+                <SidebarItem 
+                href='/auth/login'
+                label='Login'
+                icon={IoLogInOutline}
+                onClick={() => closeMenu()}
+              />
+              )
+           }
          
-          {/* login */}
-          <SidebarItem 
-            href='/auth/login'
-            label='Login'
-            icon={IoLogInOutline}
-            onClick={() => closeMenu()}
-          />
+         
+        
 
-          {/* logout */}
-          <SidebarItem 
-            href='/'
-            label='Logout'
-            icon={IoLogOutOutline}
-            onClick = {() => logout()}
-          />
+        
 
 
           {/* separator */}
