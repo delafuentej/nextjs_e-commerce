@@ -3,12 +3,28 @@ import Credentials from "next-auth/providers/credentials";
 import {z} from 'zod';// validation scheme
 import prisma from './lib/prisma';
 import bcryptjs from 'bcryptjs';
+import { AdapterUser } from 'next-auth/adapters';
 
  
 export const authConfig : NextAuthConfig= {
   pages: {
     signIn: '/auth/login',
     newUser: '/auth/new-account',
+  },
+  callbacks: {
+    // const {token, user} = params
+    jwt({token, user}){
+      //console.log('callbacks-jwt', {token, user})
+      if(user){
+        token.data = user;
+      }
+      return token;
+    },
+    session({session, token, user}) {
+     console.log('callbacks-session',{session, token, user})
+     session.user = token.data as AdapterUser;
+      return session;
+    },
   },
   providers: [
     Credentials({
@@ -41,7 +57,7 @@ export const authConfig : NextAuthConfig= {
             //return the user
             //  to not send the password in http requests :  const {password: _, ...rest} = user;
             const {password: _, ...rest} = user;
-            console.log('rest', {rest});
+           // console.log('rest', {rest});
             return rest;
         }
     })
