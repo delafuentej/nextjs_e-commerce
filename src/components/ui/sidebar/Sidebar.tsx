@@ -18,8 +18,10 @@ export const Sidebar = () => {
         const {data: session} = useSession();
 
         const isAuthenticated : boolean = !!session?.user;
-       //console.log('session', session)
 
+        const isAdmin : boolean = session?.user.role === 'admin';
+       //console.log('session', session)
+       // console.log('isAdmin',isAdmin);
   return (
     <div>
 
@@ -74,20 +76,31 @@ export const Sidebar = () => {
 
           {/* options menu */}
 
+          {
+            isAuthenticated && (
+              <>
+              {/* profile */}
+              <SidebarItem 
+              href='/profile'
+              label='Profile'
+              onClick={() => closeMenu()}
+              icon={IoPersonOutline}
+            />
+            
+              {/* orders */}
+              <SidebarItem 
+              href='/'
+              label='Orders'
+              icon={IoTicketOutline}
+            />
+            
+              </>
+             
+            )
+          }
+
           {/* profile */}
-          <SidebarItem 
-            href='/profile'
-            label='Profile'
-            onClick={() => closeMenu()}
-            icon={IoPersonOutline}
-          />
-          
-            {/* orders */}
-            <SidebarItem 
-            href='/'
-            label='Orders'
-            icon={IoTicketOutline}
-          />
+        
            {
               isAuthenticated ? (
                     // logout
@@ -95,7 +108,7 @@ export const Sidebar = () => {
                 href='/'
                 label='Logout'
                 icon={IoLogOutOutline}
-               onClick = {() => logout()}
+                onClick = {() => logout()}
         />
               ) :
               (
@@ -108,16 +121,15 @@ export const Sidebar = () => {
               />
               )
            }
-         
-         
-        
 
-        
+            {/* admin menu */}
 
-
-          {/* separator */}
-          <div className='w-full h-px bg-purple-300 my-10'/>
-          {/* admin menu */}
+           {
+            isAdmin && (
+              <>
+              
+                {/* separator */}
+            <div className='w-full h-px bg-purple-300 my-10'/>
             {/* products */}
             <SidebarItem 
             href='/'
@@ -137,8 +149,10 @@ export const Sidebar = () => {
             label='Clients'
             icon={IoPeopleOutline}
           />
-
-
+              </>
+            )
+           }
+       
         </nav>
       
     </div>

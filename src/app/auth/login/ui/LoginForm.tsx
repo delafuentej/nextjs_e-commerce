@@ -5,18 +5,20 @@ import clsx from "clsx";
 import Link from "next/link";
 import { useFormState, useFormStatus } from "react-dom";
 import { IoInformationOutline } from "react-icons/io5";
-import { useRouter } from "next/navigation";
+//import { useRouter } from "next/navigation";
 
 
 export const LoginForm = () => {
 
-    const router = useRouter();
+    //const router = useRouter();
 
     const [state, dispatch] = useFormState(authenticate, undefined);
 
     useEffect(()=>{
       if( state === 'Success'){
-        router.replace('/');
+        //router.replace('/');
+        // refresh web browser =>  window.location.replace('/');
+        window.location.replace('/');
       }
     },[state]);
 
