@@ -68,8 +68,9 @@ export const Sidebar = () => {
 
           {/* profile */}
           <SidebarItem 
-            href='/'
+            href='/profile'
             label='Profile'
+            onClick={() => closeMenu()}
             icon={IoPersonOutline}
           />
           
@@ -83,7 +84,7 @@ export const Sidebar = () => {
          
           {/* login */}
           <SidebarItem 
-            href='/'
+            href='/auth/login'
             label='Login'
             icon={IoLogInOutline}
           />
