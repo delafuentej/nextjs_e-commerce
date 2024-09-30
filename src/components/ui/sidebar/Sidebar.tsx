@@ -5,6 +5,7 @@ import { IoPersonOutline, IoCloseOutline, IoLogInOutline, IoLogOutOutline, IoPeo
 import { SidebarItem } from './SidebarItem';
 import { useUIStore } from '@/store';
 import { clsx } from 'clsx';
+import { logout } from '@/actions';
 
 export const Sidebar = () => {
 
@@ -94,6 +95,7 @@ export const Sidebar = () => {
             href='/'
             label='Logout'
             icon={IoLogOutOutline}
+            onClick = {() => logout()}
           />
 
 
