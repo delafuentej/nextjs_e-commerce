@@ -1,8 +1,10 @@
 'use client';
+import { useState } from "react";
 import Link from "next/link";
 import { SubmitHandler, useForm } from "react-hook-form";
-import { getPaginatedProductsWithImages } from '../../../../actions/products/products-pagination';
+import { registerUser } from "@/actions";
 import clsx from "clsx";
+
 
 type FormInputs = {
     firstName: string;
@@ -16,12 +18,23 @@ type FormInputs = {
 
 export const RegisterForm = () => {
 
+     const[errorMsg, setErrorMsg] = useState('')
+
     const {register, handleSubmit, formState: {errors}} = useForm<FormInputs>();
 
     const onSubmit : SubmitHandler<FormInputs>= async(data) => {
-        // server action
+       
         const {firstName, lastName, email, password} = data;
-        console.log( {firstName, lastName, email, password})
+        //console.log( {firstName, lastName, email, password})
+            // server action
+        const resp = await registerUser(firstName, lastName, email, password);
+
+        if(!resp.ok){
+            setErrorMsg( resp.message);
+            return;
+        };
+
+        console.log({resp})
     }
 
 
@@ -119,7 +132,7 @@ export const RegisterForm = () => {
         type="password" 
         {...register('password', {required: true, minLength:8})}
     />
-
+        <span className="text-red-500">{errorMsg}</span>
       <button
         
         className="bg-purple-500 hover:bg-purple-300 rounded text-white p-2 font-bold">
