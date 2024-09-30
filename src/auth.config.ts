@@ -47,5 +47,5 @@ export const authConfig : NextAuthConfig= {
     })
   ]
 } 
-
-export const {signIn, signOut, auth} = NextAuth(authConfig);
+//handlers => GET, POST Request => api/auth/[...nextauth]/route.js
+export const {signIn, signOut, auth, handlers} = NextAuth(authConfig);

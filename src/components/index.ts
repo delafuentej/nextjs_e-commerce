@@ -1,3 +1,5 @@
+//provider
+export {Provider} from './provider/Provider';
 //ui
 export {TopMenu} from './ui/top-menu/TopMenu';
 export {PageNotFound} from './ui/not-found/PageNotFound';

@@ -1,17 +1,22 @@
 'use client';
 
-import React from 'react'
+import React from 'react';
+import { useSession } from 'next-auth/react';
 import { IoPersonOutline, IoCloseOutline, IoLogInOutline, IoLogOutOutline, IoPeopleOutline, IoSearchOutline, IoShirtOutline, IoTicketOutline } from 'react-icons/io5'
 import { SidebarItem } from './SidebarItem';
 import { useUIStore } from '@/store';
 import { clsx } from 'clsx';
 import { logout } from '@/actions';
 
+
 export const Sidebar = () => {
 
         const isSidebarOpen = useUIStore(state => state.isSidebarOpen);
         const closeMenu = useUIStore( state => state.closeSidebar);
-       
+
+        //to obtain the session from client side
+        const {data: session} = useSession();
+       //console.log('session', session)
 
   return (
     <div>
