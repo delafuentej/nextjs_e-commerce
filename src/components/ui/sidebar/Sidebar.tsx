@@ -88,6 +88,7 @@ export const Sidebar = () => {
             href='/auth/login'
             label='Login'
             icon={IoLogInOutline}
+            onClick={() => closeMenu()}
           />
 
           {/* logout */}

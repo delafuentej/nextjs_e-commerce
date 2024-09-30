@@ -14,9 +14,14 @@ export async function authenticate(
     //console.log({formData: Object.fromEntries(formData)})
     //await sleep(1)
 
-    await signIn('credentials', formData);
+    await signIn('credentials',{
+      ...Object.fromEntries(formData),
+      redirect: false
+    });
+    return 'Success';
 
   } catch (error) {
+    console.log('error', error);
     if (error instanceof AuthError) {
       switch (error.type) {
         case 'CredentialsSignin':
