@@ -1,8 +1,10 @@
 'use client';
 
 import { authenticate } from "@/actions";
+import clsx from "clsx";
 import Link from "next/link";
-import { useFormState } from "react-dom";
+import { useFormState, useFormStatus } from "react-dom";
+import { IoInformationOutline } from "react-icons/io5";
 
 export const LoginForm = () => {
 
@@ -27,13 +29,25 @@ export const LoginForm = () => {
           type="password" 
           name="password"
         />
+        <div
+          className="flex h-8 items-end space-x-1"
+          aria-live='polite'
+          aria-atomic='true'
+        >
+          {  state === 'Invalid credentials.' && (
+            <div
+              className=" flex mb-4"
+            >
+            <IoInformationOutline className="h-5 w-5 text-red-500" />
+            <p className="text-sm text-red-500">Invalid Credentials</p>
+          </div>
+          )
+          }
 
-        <button
-            type='submit'
-          className="bg-purple-500 hover:bg-purple-300 rounded text-white p-2 font-bold">
-          Login
-        </button>
+        </div>
 
+        {/* button login */}
+       <LoginButton />
 
         {/* divisor l ine */ }
         <div className="flex items-center my-5">
@@ -49,5 +63,24 @@ export const LoginForm = () => {
         </Link>
 
       </form>
+  )
+}
+
+function LoginButton(){
+  const {pending} = useFormStatus();
+
+  return(
+     <button
+          type='submit'
+          className={
+            clsx({
+              "bg-purple-500 hover:bg-purple-300 rounded text-white p-2 font-bold": !pending,
+              "btn-disabled": pending
+            })
+          }
+          disabled={ pending }
+          >
+          Login
+    </button>
   )
 }
