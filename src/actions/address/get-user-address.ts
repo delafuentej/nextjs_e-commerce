@@ -12,10 +12,11 @@ export const getUserAddress = async(userId: string) => {
 
         if(!address) return null;
 
-        const {countryId, ...rest} = address;
+        const {countryId, address2, ...rest} = address;
 
         return{
             ...rest,
+            address2: address2 ? address2 : '',
             country: countryId,
         }
 
