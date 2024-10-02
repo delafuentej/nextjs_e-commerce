@@ -14,7 +14,7 @@ export const registerUser = async(
                 firstName: firstName,
                 lastName: lastName,
                 email: email.toLowerCase(),
-                password: bcrypjs.hashSync(password)
+                password: bcrypjs.hashSync(password),
             },
             select: {
                 id: true,
@@ -23,6 +23,7 @@ export const registerUser = async(
                 email: true,
             }
         });
+        console.log('user', user)
         return {
             ok: true,
             user: user,

@@ -1,7 +1,8 @@
-export * from './auth/login';
-export * from './auth/logout';
-export * from './auth/register';
+export {authenticate} from './auth/login';
+export {login} from './auth/login';
+export {logout} from './auth/logout';
+export {registerUser} from './auth/register';
 
-export * from './products/products-pagination';
-export * from './product/get-product-by-slug';
-export * from './product/get-stock-by-slug';
+export { getPaginatedProductsWithImages } from './products/products-pagination';
+export { getProductBySlug } from './product/get-product-by-slug';
+export { getStockBySlug } from './product/get-stock-by-slug';

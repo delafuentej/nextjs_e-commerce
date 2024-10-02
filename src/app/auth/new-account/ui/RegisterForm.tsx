@@ -1,8 +1,11 @@
 'use client';
+
 import { useState } from "react";
 import Link from "next/link";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { registerUser } from "@/actions";
+import { login } from "@/actions";
+
 import clsx from "clsx";
 
 
@@ -23,6 +26,7 @@ export const RegisterForm = () => {
     const {register, handleSubmit, formState: {errors}} = useForm<FormInputs>();
 
     const onSubmit : SubmitHandler<FormInputs>= async(data) => {
+        setErrorMsg('');
        
         const {firstName, lastName, email, password} = data;
         //console.log( {firstName, lastName, email, password})
@@ -34,7 +38,10 @@ export const RegisterForm = () => {
             return;
         };
 
-        console.log({resp})
+         await login(email.toLowerCase(), password);
+        window.location.replace('/')
+
+        console.log('resp',{resp})
     }
 
 
@@ -50,8 +57,11 @@ export const RegisterForm = () => {
             )
         }
 
-    <label htmlFor="firstName">First Name</label>
+    <label 
+        
+        htmlFor="firstName">First Name</label>
       <input
+        id='firstName'
         autoFocus
         className={
             clsx(
@@ -71,8 +81,11 @@ export const RegisterForm = () => {
             )
         }
 
-    <label htmlFor="lastName">Last Name</label>
+    <label 
+     
+    htmlFor="lastName">Last Name</label>
       <input
+        id='lastName'
         autoFocus
         className={
             clsx(
@@ -92,8 +105,11 @@ export const RegisterForm = () => {
             )
         }
 
-      <label htmlFor="email">E-Mail</label>
+      <label 
+      
+      htmlFor="email">E-Mail</label>
       <input
+        id='email'
         autoFocus
         className={
             clsx(
@@ -106,11 +122,13 @@ export const RegisterForm = () => {
         type="email" 
         {...register('email', {
             required: true, 
-            pattern:{
-            value:/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
-            message: 'Please enter a valid email address'
+            pattern:  /^\S+@\S+$/i 
+            // pattern:{
+            // value:/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
+            // message: 'Please enter a valid email address'
 
-        }})}
+            // }
+    })}
     />
           {
             errors.password?.type === 'required' && (
@@ -118,8 +136,11 @@ export const RegisterForm = () => {
             )
         }
 
-      <label htmlFor="password">Password</label>
+      <label 
+
+      htmlFor="password">Password</label>
       <input
+        id='password'
         autoFocus
         className={
             clsx(
@@ -133,12 +154,15 @@ export const RegisterForm = () => {
         {...register('password', {required: true, minLength:8})}
     />
         <span className="text-red-500">{errorMsg}</span>
-      <button
-        
-        className="bg-purple-500 hover:bg-purple-300 rounded text-white p-2 font-bold">
-        Create
-      </button>
 
+        
+    
+           
+      <button
+       
+        className="bg-purple-500 hover:bg-purple-300 rounded text-white p-2 font-bold">
+        Create 
+        </button>
 
       {/* divisor l ine */ }
       <div className="flex items-center my-5">
