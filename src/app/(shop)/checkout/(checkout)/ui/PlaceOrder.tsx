@@ -3,6 +3,7 @@
 import { useAddressStore, useCartStore } from "@/store";
 import { useEffect, useState } from "react";
 import { currencyFormat } from '../../../../../utils/currencyFormat';
+import { placeOrder } from "@/actions";
 import clsx from "clsx";
 
 export const PlaceOrder = () => {
@@ -40,7 +41,11 @@ export const PlaceOrder = () => {
 
       }))
       //info to send to the server
-      console.log({address, productsToOrder})
+      //console.log({address, productsToOrder})
+
+      //server action
+      const resp = await placeOrder(productsToOrder, address);
+      console.log({resp})
      
 
       setIsPlacingOrder(false);

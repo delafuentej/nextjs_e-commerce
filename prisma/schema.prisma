@@ -45,7 +45,7 @@ model Product {
   slug        String   @unique
   tags        String[] @default([])
   gender      Gender
-
+// relationships
   category     Category       @relation(fields: [categoryId], references: [id])
   categoryId   String
   ProductImage ProductImage[]
@@ -71,12 +71,12 @@ model User {
   password      String
   role          Role         @default(user)
   image         String?
-  UserAddress   UserAddress?
+  address   UserAddress?
   Order         Order[]
 }
 
 model Country {
-  id           String         @id @default(uuid())
+  id           String         @id 
   name         String
   // relationships
   UserAddress  UserAddress[]
@@ -84,16 +84,16 @@ model Country {
 }
 
 model UserAddress {
-  id         String  @unique @default(uuid())
+  id         String  @id @default(uuid())
   firstName  String
   lastName   String
   address    String
   address2   String?
   postalCode String
   phone      String
-
+   city      String
   // relationships
-  city      String
+ 
   country   Country @relation(fields: [countryId], references: [id])
   countryId String
 
@@ -108,7 +108,7 @@ model Order {
   taxes      Float
   total      Float
   totalItems Int
-  isPaid     Boolean
+  isPaid     Boolean @default(false)
   paidAt     DateTime?
 
   createdAt DateTime @default(now())
@@ -151,6 +151,6 @@ model OrderAddress {
   country   Country @relation(fields: [countryId], references: [id])
   countryId String
 
-  order   Order  @relation(fields: [orderId], references: [id])
+  Order   Order  @relation(fields: [orderId], references: [id])
   orderId String @unique
 }
