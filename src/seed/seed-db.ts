@@ -5,6 +5,10 @@ import { countries } from './seed-countries';
 async function main() {
    //delete previous records : tables
   // await Promise.all([
+   await prisma.orderAddress.deleteMany();
+   await prisma.orderItem.deleteMany();
+   await prisma.order.deleteMany();
+
       await prisma.userAddress.deleteMany();
      await prisma.country.deleteMany();
      await prisma.user.deleteMany();
