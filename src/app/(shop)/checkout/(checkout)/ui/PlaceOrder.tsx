@@ -3,11 +3,13 @@
 import { useAddressStore, useCartStore } from "@/store";
 import { useEffect, useState } from "react";
 import { currencyFormat } from '../../../../../utils/currencyFormat';
+import clsx from "clsx";
 
 export const PlaceOrder = () => {
 
     // to load store-info
-    //const [loaded, setLoaded] = useState(false);
+    const [loaded, setLoaded] = useState(false);
+    const [isPlacingOrder, setIsPlacingOrder] = useState(false);
 
     // to obtain the address
     const address = useAddressStore( state => state.address);
@@ -16,15 +18,37 @@ export const PlaceOrder = () => {
     const totalItems = useCartStore((state) => state.getSummaryInfo().totalItems);
     const subTotal = useCartStore((state) => state.getSummaryInfo().subTotal);
     const taxes = useCartStore((state) => state.getSummaryInfo().taxes);
+
+    // to obtain cart products
+    const cart = useCartStore( state => state.cart);
     
 
 
     //to avoid discrepancies between what is generated on the server side and what is generated on the client side.
-   // useEffect(()=>{
-    //    setLoaded(false)
-   // },[]);
+    useEffect(()=>{
+        setLoaded(true)
+    },[]);
 
-   // if(!loaded) return <p>Loading...</p>;
+    const onPlaceOrder = async() => {
+
+      setIsPlacingOrder(true);
+
+      const productsToOrder = cart.map( product => ({
+         productId: product.id,
+         quantity: product.quantity,
+         size: product.size,
+
+      }))
+      //info to send to the server
+      console.log({address, productsToOrder})
+     
+
+      setIsPlacingOrder(false);
+    }
+
+    if(!loaded){
+      return <p>Loading ...</p>
+    }
 
   return (
     <div className="bg-white rounded-xl shadow-xl p-7">
@@ -67,15 +91,23 @@ export const PlaceOrder = () => {
 
      </p>
 
-    <div className="mt-5 mb-2 w-full bg-purple-500 font-bold hover:bg-purple-300 text-center text-white p-2 rounded">
+     {/* <span className="text-red-500 font-bold">Order Creation Error</span> */}
+
+    <button 
+     //href='/orders/123'
+    onClick={onPlaceOrder}
+    className={
+      clsx({
+         "mt-5 mb-2 w-full bg-purple-500 font-bold hover:bg-purple-300 text-center text-white p-2 rounded": !isPlacingOrder,
+         "btn-disabled w-full": isPlacingOrder,
+
+      })
+    }>
      {/* disclaimer */}
-   
-      <button
-      className="text-center"
-      //href='/orders/123'
-      >Place Order
+     Place Order
+  
       </button>
-    </div>
+  
 
   </div>
   )
