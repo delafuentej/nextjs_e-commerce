@@ -2,15 +2,21 @@
 
 import { useAddressStore, useCartStore } from "@/store";
 import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 import { currencyFormat } from '../../../../../utils/currencyFormat';
 import { placeOrder } from "@/actions";
 import clsx from "clsx";
 
 
+
 export const PlaceOrder = () => {
 
+  //
+  const router = useRouter();
     // to load store-info
     const [loaded, setLoaded] = useState(false);
+    const [errorMsg, setErrorMsg] = useState('');
+
     const [isPlacingOrder, setIsPlacingOrder] = useState(false);
 
     // to obtain the address
@@ -23,6 +29,8 @@ export const PlaceOrder = () => {
 
     // to obtain cart products
     const cart = useCartStore( state => state.cart);
+    // to clean the shopping-cart from products
+    const clearCart = useCartStore( state => state.clearCart)
     
 
 
@@ -46,10 +54,19 @@ export const PlaceOrder = () => {
 
       //server action
       const resp = await placeOrder(productsToOrder, address);
-      console.log({resp})
-     
 
-      setIsPlacingOrder(false);
+      if(!resp.ok){
+        setIsPlacingOrder(false); 
+        setErrorMsg(resp.message);
+        return;
+      }
+      //console.log({resp})
+     //if at this point everything went well, 
+     //have to clean the shopping cart, 
+     clearCart();
+     //and redirect the user.
+      router.replace(`/orders/${resp.order!.id}`)
+     
     }
 
     if(!loaded){
@@ -97,7 +114,7 @@ export const PlaceOrder = () => {
 
      </p>
 
-     <span className="text-red-500 font-bold">{}</span> 
+     <span className="text-red-500 font-bold">{errorMsg}</span> 
 
     <button 
      //href='/orders/123'
