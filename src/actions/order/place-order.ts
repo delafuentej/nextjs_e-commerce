@@ -66,9 +66,41 @@ export const placeOrder = async( productIds: ProductToOrder[], address: Address)
  //  console.log({subTotal, taxes, total})
 
  // create the  prisma database transaction : Order, OrderAddress, OrderItem
-   const prismaTx = await prisma.$transaction( async(tx) => {
+ try{
+    const prismaTx = await prisma.$transaction( async(tx) => {
 
         // update stock products
+        const updatedProductsPromises = products.map( (product)=> {
+
+            // to accumulate the values 
+            const productQuantity = productIds.filter(
+                item => item.productId === product.id
+            ).reduce((acc, it )=> it.quantity + acc ,0);
+
+            if (productQuantity === 0) {
+                //this error should not happen
+                throw new Error(`${product.id} has no defined quantity`)
+            };
+            return tx.product.update({
+                where: {
+                    id: product.id
+                },
+                data: {
+                   // inStock: product.inStock - productQuantity // incorrect update: not to do in case there are more customers trying to buy the same products at the same time.
+                    inStock : {
+                        decrement: productQuantity,
+                    }
+                }
+            });
+        });
+
+        const updatedProducts = await Promise.all(updatedProductsPromises);
+        // check the updatedProducts array for any order-product that is out of stock.
+        updatedProducts.forEach( item => {
+            if(item.inStock < 0){
+                throw new Error(`${item.title} does not have sufficient stock`)
+            }
+        })
 
         // create order - Header - Details
          const order = await tx.order.create({
@@ -108,13 +140,27 @@ export const placeOrder = async( productIds: ProductToOrder[], address: Address)
         })
 //         console.log({orderAddress})
         return {
-            updatedProducts: [],
+            updatedProducts: updatedProducts,
             order: order,
             orderAddress: orderAddress,
            
            
         }
-   })
+   });
+
+   return {
+    ok: true,
+    order: prismaTx.order,
+    prismaTx: prismaTx,
+   }
+
+ }catch (error: any){
+    return {
+        ok: false,
+        message: error?.message,
+    }
+ }
+   
    
 
 }
