@@ -6,6 +6,7 @@ import { currencyFormat } from '../../../../../utils/currencyFormat';
 import { placeOrder } from "@/actions";
 import clsx from "clsx";
 
+
 export const PlaceOrder = () => {
 
     // to load store-info
@@ -96,7 +97,7 @@ export const PlaceOrder = () => {
 
      </p>
 
-     {/* <span className="text-red-500 font-bold">Order Creation Error</span> */}
+     <span className="text-red-500 font-bold">{}</span> 
 
     <button 
      //href='/orders/123'

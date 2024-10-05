@@ -12,7 +12,7 @@ export const getUserAddress = async(userId: string) => {
 
         if(!address) return null;
 
-        const {countryId, address2, ...rest} = address;
+        const {countryId, address2, userId: _userId, ...rest} = address;
 
         return{
             ...rest,
@@ -21,7 +21,7 @@ export const getUserAddress = async(userId: string) => {
         }
 
     }catch(error){
-        console.log(error)
+        console.log(error);
         throw new Error(`Address could not be found by userId: ${userId}`)
     }
 }

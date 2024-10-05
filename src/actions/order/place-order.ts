@@ -3,6 +3,7 @@
 import { auth } from "@/auth.config";
 import { Address, Size } from "@/interfaces";
 import prisma from "@/lib/prisma";
+import { SidebarItem } from '../../components/ui/sidebar/SidebarItem';
 
 interface ProductToOrder {
     productId: string;
@@ -81,7 +82,7 @@ export const placeOrder = async( productIds: ProductToOrder[], address: Address)
 
                 OrderItem:{
                     createMany: {
-                        data: productIds.map( item => ({
+                        data: productIds.map( (item)=> ({
                             quantity: item.quantity,
                             size: item.size,
                             productId: item.productId,
@@ -94,21 +95,22 @@ export const placeOrder = async( productIds: ProductToOrder[], address: Address)
         // validate, if price  = 0, throw error
 
         // create address order
-        // const {country, ...restAddress} = address;
-//         console.log({address})
-     //   const orderAddress = await tx.orderAddress.create({
-//             data: {
-//                 ...restAddress,
-//                 countryId: country,
-//                 orderId: order.id,
+         const {country, _userId,...restAddress} = address;
+         
+           console.log('address',{address})
+        const orderAddress = await tx.orderAddress.create({
+           data: {
+               ...restAddress,
+                 countryId: country,
+                 orderId: order.id,
                
-//             }
-//         })
+            }
+        })
 //         console.log({orderAddress})
         return {
             updatedProducts: [],
             order: order,
-            orderAddress: {},
+            orderAddress: orderAddress,
            
            
         }
