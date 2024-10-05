@@ -4,7 +4,7 @@ export {setUserAddres} from './address/set-user-address';
 export {deleteUserAddress} from './address/delete-user-address';
 
 export {placeOrder} from  './order/place-order';
-
+export {getOrderById} from './order/get-order-by-id';
 
 export {authenticate} from './auth/login';
 export {login} from './auth/login';
