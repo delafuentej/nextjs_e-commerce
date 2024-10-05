@@ -23,7 +23,7 @@ export const registerUser = async(
                 email: true,
             }
         });
-        console.log('user', user)
+       // console.log('user', user)
         return {
             ok: true,
             user: user,

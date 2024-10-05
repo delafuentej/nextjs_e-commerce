@@ -89,8 +89,9 @@ export const Sidebar = () => {
             
               {/* orders */}
               <SidebarItem 
-              href='/'
+              href='/orders'
               label='Orders'
+              onClick={() => closeMenu()}
               icon={IoTicketOutline}
             />
             
@@ -108,7 +109,7 @@ export const Sidebar = () => {
                 href='/'
                 label='Logout'
                 icon={IoLogOutOutline}
-                onClick = {() => logout()}
+                onClick = {() =>{ logout(); closeMenu() }}
         />
               ) :
               (
