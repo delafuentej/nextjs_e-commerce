@@ -2,10 +2,22 @@
 
 
 import { PayPalButtons, usePayPalScriptReducer } from '@paypal/react-paypal-js';
-import React from 'react'
+import {CreateOrderData, CreateOrderActions} from '@paypal/paypal-js';
+import { setTransactionId } from '@/actions';
 
-export const PayPalButton = () => {
+
+interface Props {
+  orderId: string;
+  amount: number;
+}
+
+
+export const PayPalButton = ({orderId, amount}: Props) => {
+  console.log('orderId', orderId)
   const [{ isPending }] = usePayPalScriptReducer();
+
+  const roundedAmount = (Math.round(amount * 100))/100;
+
 
   if(isPending){
     return(
@@ -15,9 +27,44 @@ export const PayPalButton = () => {
       </div>
     )
   }
+
+  const createOrder = async(data: CreateOrderData, actions: CreateOrderActions): Promise<string> => {
+    try{
+      const transactionId = await actions.order.create({
+        purchase_units:[
+            {
+           
+             amount: {
+              
+              value: `${roundedAmount}`,
+             // currency_code:'EUR',
+             }
+            }
+          ]
+      })
+     // console.log('transactionId',{transactionId});
+      // actions/payments/setTransactionId
+      const { ok } = await setTransactionId(orderId, transactionId);
+      if(!ok){
+        throw new Error(`Order could not be updated`)
+      }
+      return transactionId;
+
+    }catch(error){
+      console.error('Error creating order:', error);
+      throw error;
+    }
+
+  
+  }
+
   return (
     <>
-      <PayPalButtons />
+      <PayPalButtons 
+      //callbacks: createOrder, onApprove
+        createOrder={createOrder}
+        //onApprove={}
+      />
     </>
   )
 }
