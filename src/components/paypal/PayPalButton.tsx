@@ -1,9 +1,8 @@
 'use client';
 
-
 import { PayPalButtons, usePayPalScriptReducer } from '@paypal/react-paypal-js';
-import {CreateOrderData, CreateOrderActions} from '@paypal/paypal-js';
-import { setTransactionId } from '@/actions';
+import {CreateOrderData, CreateOrderActions, OnApproveData, OnApproveActions} from '@paypal/paypal-js';
+import { setTransactionId, paypalCheckPayment } from '@/actions';
 
 
 interface Props {
@@ -13,7 +12,7 @@ interface Props {
 
 
 export const PayPalButton = ({orderId, amount}: Props) => {
-  console.log('orderId', orderId)
+ // console.log('orderId', orderId)
   const [{ isPending }] = usePayPalScriptReducer();
 
   const roundedAmount = (Math.round(amount * 100))/100;
@@ -41,7 +40,7 @@ export const PayPalButton = ({orderId, amount}: Props) => {
              }
             }
           ]
-      })
+      });
      // console.log('transactionId',{transactionId});
       // actions/payments/setTransactionId
       const { ok } = await setTransactionId(orderId, transactionId);
@@ -54,8 +53,16 @@ export const PayPalButton = ({orderId, amount}: Props) => {
       console.error('Error creating order:', error);
       throw error;
     }
+  };
 
-  
+  const onApprove = async(data: OnApproveData, actions: OnApproveActions) => {
+   // console.log('onApprove')
+    const details = await actions.order?.capture();
+    
+    
+    if(!details) return;
+
+    await paypalCheckPayment(details?.id);
   }
 
   return (
@@ -63,7 +70,7 @@ export const PayPalButton = ({orderId, amount}: Props) => {
       <PayPalButtons 
       //callbacks: createOrder, onApprove
         createOrder={createOrder}
-        //onApprove={}
+        onApprove={onApprove}
       />
     </>
   )
