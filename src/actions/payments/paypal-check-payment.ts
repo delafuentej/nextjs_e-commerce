@@ -2,6 +2,7 @@
 
 import { PayPalOrderStatusResponse } from "@/interfaces";
 import prisma from "@/lib/prisma";
+import { revalidatePath } from "next/cache";
 
 
 
@@ -28,7 +29,7 @@ export const paypalCheckPayment = async(paypalTransactionId: string) => {
 
     const {status, purchase_units} = verifyPayment;
     console.log({status, purchase_units})
-    //const {} = purchase_units[0];
+    const {invoice_id: orderId} = purchase_units[0];
 
     if (status !== 'COMPLETED'){
         return {
@@ -41,13 +42,18 @@ export const paypalCheckPayment = async(paypalTransactionId: string) => {
         //console.log({status, purchase_units})
 
         await prisma.order.update({
-            where: {id: '607a0d1d-fad2-4f60-8ce9-97a1aab3aa94'},
+            where: {id: orderId},
             data: {
                 isPaid: true,
                 paidAt: new Date(),
             }
         })
         // revalidate a path for reconstruction of component
+        revalidatePath(`/orders/${orderId}`)
+
+        return {
+            ok:true,
+        }
 
     }catch(error){
         console.log(error);
