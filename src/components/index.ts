@@ -1,5 +1,8 @@
 //provider
 export {Providers} from './providers/Providers';
+
+//orders
+export {OrderStatus} from './orders/OrderStatus';
 //ui
 export {TopMenu} from './ui/top-menu/TopMenu';
 export {PageNotFound} from './ui/not-found/PageNotFound';
