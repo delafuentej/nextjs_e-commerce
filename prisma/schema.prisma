@@ -120,6 +120,8 @@ model Order {
 
   OrderItem    OrderItem[]
   OrderAddress OrderAddress?
+// third party payment provider id => transactionId
+  transactionId String?
 }
 
 model OrderItem {

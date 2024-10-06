@@ -127,9 +127,9 @@ export const placeOrder = async( productIds: ProductToOrder[], address: Address)
         // validate, if price  = 0, throw error
 
         // create address order
-         const {country, _userId,...restAddress} = address;
+         const {country, _userId, id,...restAddress} = address;
          
-           console.log('address',{address})
+           console.log('restAddress',{restAddress})
         const orderAddress = await tx.orderAddress.create({
            data: {
                ...restAddress,
@@ -151,7 +151,7 @@ export const placeOrder = async( productIds: ProductToOrder[], address: Address)
    return {
     ok: true,
     order: prismaTx.order,
-    prismaTx: prismaTx,up
+    prismaTx: prismaTx,
    }
 
  }catch (error: any){
