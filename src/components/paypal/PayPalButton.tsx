@@ -66,12 +66,12 @@ export const PayPalButton = ({orderId, amount}: Props) => {
   }
 
   return (
-    <>
+    <div className='relative z-0'>
       <PayPalButtons 
       //callbacks: createOrder, onApprove
         createOrder={createOrder}
         onApprove={onApprove}
       />
-    </>
+    </div>
   )
 }

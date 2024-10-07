@@ -1,15 +1,15 @@
 // https://tailwindcomponents.com/component/hoverable-table
 export const revalidate = 0;
-import { getOrdersByUser } from '@/actions';
+import { getPaginatedOrders } from '@/actions';
 import { Title } from '@/components';
 import Link from 'next/link';
 import { redirect } from 'next/navigation';
 import { IoCardOutline } from 'react-icons/io5';
 
 
-export default async function OrdersList() {
+export default async function Orders() {
 
-  const {ok, orders} = await getOrdersByUser();
+  const {ok, orders} = await getPaginatedOrders();
 
   if(!ok){
     redirect('/auth/login');
@@ -18,7 +18,7 @@ export default async function OrdersList() {
   console.log('orders',orders);
   return (
     <>
-      <Title title="Orders" />
+      <Title title="Orders-Admin" />
 
       <div className="mb-10">
         <table className="min-w-full">
@@ -47,7 +47,7 @@ export default async function OrdersList() {
                   key={order!.id}
                   className="bg-white border-b transition duration-300 ease-in-out hover:bg-purple-100">
 
-                  <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{order!.id.split('-').at(-1)}</td>
+                  <td className="px-6 py-4 whitespace-nowrap text-sm  text-gray-900 font-bold">{order!.id.split('-').at(-1)?.toUpperCase()}</td>
                   <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
                     {order!.OrderAddress!.firstName} {order!.OrderAddress!.lastName}
                   </td>

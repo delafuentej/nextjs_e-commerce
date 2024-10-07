@@ -140,9 +140,10 @@ export const Sidebar = () => {
           
           {/* orders */}
           <SidebarItem 
-            href='/'
+            href='/admin/orders'
             label='Orders'
             icon={IoTicketOutline}
+            onClick={() => closeMenu()}
           />
           {/* users: clients */}
           <SidebarItem 

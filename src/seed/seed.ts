@@ -50,7 +50,15 @@ export const initialData: SeedData = {
             email: 'jansmith@gmail.com',
             password: bcrypjs.hashSync('Qwe123'),
             role: 'user'
-        }
+        },
+        {
+            firstName: 'Juan',
+            lastName: 'Gómez',
+            email: 'jgomez@gmail.com',
+            password: bcrypjs.hashSync('Qwe123'),
+            role: 'user'
+        },
+
     ],
     categories: [
       'Shirts', 'Pants', 'Hoodies', 'Hats'
