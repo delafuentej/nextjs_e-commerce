@@ -9,6 +9,9 @@ export {getOrderById} from './order/get-order-by-id';
 export {getOrdersByUser} from './order/get-orders-by-user';
 export {getPaginatedOrders} from './order/get-paginated-orders';
 
+export{getPaginatedUsers} from './user/get-paginated-users';
+export {changeUserRole} from './user/change.user-role';
+
 export {setTransactionId} from './payments/set-transaction-id';
 export {paypalCheckPayment} from './payments/paypal-check-payment';
 

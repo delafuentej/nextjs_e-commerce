@@ -147,9 +147,10 @@ export const Sidebar = () => {
           />
           {/* users: clients */}
           <SidebarItem 
-            href='/'
-            label='Clients'
+            href='/admin/users'
+            label='Users'
             icon={IoPeopleOutline}
+            onClick={() => closeMenu()}
           />
               </>
             )
