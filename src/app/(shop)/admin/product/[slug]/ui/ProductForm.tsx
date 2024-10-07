@@ -1,10 +1,23 @@
 "use client";
 
-import { Product, CategoryProduct } from "@/interfaces";
+import type { Product, CategoryProduct, Category } from "@/interfaces";
+import { useForm } from "react-hook-form";
 
 interface Props {
   product: Product;
   categories: CategoryProduct[];
+};
+
+interface FormInputs {
+  title: string;
+  slug: string;
+  description: string;
+  price: number;
+  inStock: number;
+  sizes: string[];
+  tags: string;
+  gender: Category;
+  categoryId: string;
 }
 
 const sizes = ["XS", "S", "M", "L", "XL", "XXL"];
@@ -12,18 +25,42 @@ const sizes = ["XS", "S", "M", "L", "XL", "XXL"];
 
 
 export const ProductForm = ({ product, categories }: Props) => {
+
+  const {handleSubmit, register, formState: {isValid}} = useForm<FormInputs>({defaultValues:{
+    ...product,
+    tags: product.tags.join(', '),
+    sizes:  product.sizes ?? [],
+
+  }});
+
+  const onSubmit = async(data: FormInputs) => {
+    console.log({data});
+  }
+
+
   return (
-    <form className="grid px-5 mb-16 grid-cols-1 sm:px-0 sm:grid-cols-2 gap-3">
+    <form 
+    onSubmit={handleSubmit(onSubmit)}
+    className="grid px-5 mb-16 grid-cols-1 sm:px-0 sm:grid-cols-2 gap-3">
       {/* Textos */}
       <div className="w-full">
         <div className="flex flex-col mb-2">
           <span>Title</span>
-          <input type="text" className="p-2 border rounded-md bg-purple-100" />
+          <input 
+            type="text" 
+            //value='ppp' 
+            className="p-2 border rounded-md bg-purple-100" 
+            {...register('title', {required:true})}
+          />
         </div>
 
         <div className="flex flex-col mb-2">
           <span>Slug</span>
-          <input type="text" className="p-2 border rounded-md bg-purple-100" />
+          <input 
+            type="text" 
+            className="p-2 border rounded-md bg-purple-100" 
+            {...register('slug', {required:true})}
+          />
         </div>
 
         <div className="flex flex-col mb-2">
@@ -31,23 +68,36 @@ export const ProductForm = ({ product, categories }: Props) => {
           <textarea
             rows={5}
             className="p-2 border rounded-md bg-purple-100"
+            //value='fff'
+            {...register('description', {required:true})}
           ></textarea>
         </div>
 
         <div className="flex flex-col mb-2">
           <span>Price</span>
-          <input type="number" className="p-2 border rounded-md bg-purple-100" />
+          <input 
+            type="number" 
+            className="p-2 border rounded-md bg-purple-100" 
+            {...register('price', {required:true, min:0})}
+            />
         </div>
 
         <div className="flex flex-col mb-2">
           <span>Tags</span>
-          <input type="text" className="p-2 border rounded-md bg-purple-100" />
+          <input 
+            type="text" 
+            className="p-2 border rounded-md bg-purple-100" 
+            {...register('tags', {required:true})}
+            />
         </div>
 
         <div className="flex flex-col mb-2">
           <span>Gender</span>
-          <select className="p-2 border rounded-md bg-purple-100">
-            <option value="">[Seleccione]</option>
+          <select 
+            className="p-2 border rounded-md bg-purple-100"
+            {...register('gender', {required:true})}
+          >
+            <option value="">[Select]</option>
             <option value="men">Men</option>
             <option value="women">Women</option>
             <option value="kid">Kid</option>
@@ -57,13 +107,18 @@ export const ProductForm = ({ product, categories }: Props) => {
 
         <div className="flex flex-col mb-2">
           <span>Category</span>
-          <select className="p-2 border rounded-md bg-purple-100">
+          <select 
+            className="p-2 border rounded-md bg-purple-100"
+            {...register('categoryId', {required:true})}
+          >
             <option value="">[Select]</option>
             { categories.map( category => (
                <option key={category.id} value={category.id}>{category.name}</option>
             ))}
           </select>
         </div>
+
+      
 
         <button className="bg-purple-500 hover:bg-purple-300 text-white w-full font-bold rounded-md p-2">
           Save
@@ -98,6 +153,7 @@ export const ProductForm = ({ product, categories }: Props) => {
               multiple 
               className="p-2 border rounded-md bg-purple-100" 
               accept="image/png, image/jpeg"
+
             />
 
           </div>
