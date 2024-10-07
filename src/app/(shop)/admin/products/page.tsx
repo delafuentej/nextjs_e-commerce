@@ -96,7 +96,7 @@ export default async function Products({searchParams}:Props) {
                   {/* product title */}
                   <td className="text-sm text-gray-900 font-bold px-6 py-4 whitespace-nowrap">
                     <Link
-                    href={`/admin/products/${product.slug}`}
+                    href={`/admin/product/${product.slug}`}
                     className='font-bold hover:underline hover:text-purple-500' 
                     >
                      {product!.title}

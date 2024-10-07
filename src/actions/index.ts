@@ -4,6 +4,8 @@ export {getUserAddress} from './address/get-user-address';
 export {setUserAddres} from './address/set-user-address';
 export {deleteUserAddress} from './address/delete-user-address';
 
+export {getCategories} from './category/get-categories';
+
 export {placeOrder} from  './order/place-order';
 export {getOrderById} from './order/get-order-by-id';
 export {getOrdersByUser} from './order/get-orders-by-user';
