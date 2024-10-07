@@ -133,9 +133,10 @@ export const Sidebar = () => {
             <div className='w-full h-px bg-purple-300 my-10'/>
             {/* products */}
             <SidebarItem 
-            href='/'
+            href='/admin/products'
             label='Products'
             icon={IoShirtOutline}
+            onClick={() => closeMenu()}
           />
           
           {/* orders */}
