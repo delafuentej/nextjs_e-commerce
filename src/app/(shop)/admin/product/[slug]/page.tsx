@@ -21,9 +21,6 @@ export default async function Product({params}: Props) {
     ]);
 
     
-
-
-
     if(!product){
       redirect('/admin/products');
     }
