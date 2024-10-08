@@ -1,10 +1,12 @@
 "use client";
 
-import type { Product, CategoryProduct, Category } from "@/interfaces";
+import type { Product, CategoryProduct, Category, ProductImage } from "@/interfaces";
+import clsx from "clsx";
+import Image from "next/image";
 import { useForm } from "react-hook-form";
 
 interface Props {
-  product: Product;
+  product: Product & { ProductImage?: ProductImage[]};
   categories: CategoryProduct[];
 };
 
@@ -25,16 +27,28 @@ const sizes = ["XS", "S", "M", "L", "XL", "XXL"];
 
 
 export const ProductForm = ({ product, categories }: Props) => {
+  console.log('product', product)
 
-  const {handleSubmit, register, formState: {isValid}} = useForm<FormInputs>({defaultValues:{
+  const {handleSubmit, register, formState: {isValid}, getValues, setValue, watch} = useForm<FormInputs>({defaultValues:{
     ...product,
     tags: product.tags.join(', '),
     sizes:  product.sizes ?? [],
 
-  }});
+  }}); 
+// for the ui to update changes => watch
+  watch('sizes');
 
   const onSubmit = async(data: FormInputs) => {
     console.log({data});
+  }
+
+  const onSizeChanged = (size: string) => {
+    const sizes = new Set(getValues('sizes'));
+
+   (sizes.has(size)) ? sizes.delete(size) : sizes.add(size);
+
+   console.log(sizes)
+    setValue('sizes', Array.from(sizes));
   }
 
 
@@ -136,7 +150,18 @@ export const ProductForm = ({ product, categories }: Props) => {
             {
               sizes.map( size => (
                 // bg-blue-500 text-white <--- si está seleccionado
-                <div key={ size } className="flex  items-center justify-center w-10 h-10 mr-2 border rounded-md">
+                <div 
+                  key={ size } 
+                  onClick={()=>onSizeChanged(size)}
+                  className={
+                    clsx(
+                      'p-3  cursor-pointer flex justify-center items-center w-10 h-10 mr-2 border rounded-md font-bold transition-all',
+                      {
+                        'bg-purple-500 text-white': getValues('sizes').includes(size),
+                      }
+                    )
+                  }
+                >
                   <span>{ size }</span>
                 </div>
               ))
@@ -155,6 +180,35 @@ export const ProductForm = ({ product, categories }: Props) => {
               accept="image/png, image/jpeg"
 
             />
+
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+
+            {
+              product.ProductImage?.map( image => (
+                <div
+                key={image.id}
+                >
+                  <Image 
+                  className="rounded-t-xl  w-full shadow-xl"
+                  src={`/products/${image.url}`}
+                  alt={product.title ?? ''}
+                  width={300}
+                  height={300}
+                  />
+
+                  <button 
+                    type='button'
+                    className="bg-red-500  text-white font-bold p-2 rounded-b-xl  w-full animate-pulse shadow-xl"
+                    onClick={()=>console.log(image.id, image.url)}
+                    >
+                    Delete
+                  </button>
+
+                </div>
+              ))
+            }
 
           </div>
 
