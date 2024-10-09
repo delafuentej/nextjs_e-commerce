@@ -1,6 +1,6 @@
 "use client";
 
-import type { Product, CategoryProduct, Category, ProductImage } from "@/interfaces";
+import type { Product, CategoryProduct, Category, ProductImage, Size } from "@/interfaces";
 import { createUpdateProduct } from "@/actions";
 import clsx from "clsx";
 import Image from "next/image";
@@ -23,7 +23,7 @@ interface FormInputs {
   categoryId: string;
 }
 
-const sizes = ["XS", "S", "M", "L", "XL", "XXL"];
+const sizes : Size[]= ["XS", "S", "M", "L", "XL", "XXL"];
 
 
 
@@ -32,7 +32,7 @@ export const ProductForm = ({ product, categories }: Props) => {
 
   const {handleSubmit, register, formState: {isValid}, getValues, setValue, watch} = useForm<FormInputs>({defaultValues:{
     ...product,
-    tags: product.tags.join(', '),
+    tags: product.tags?.join(', '),
     sizes:  product.sizes ?? [],
 
   }}); 
