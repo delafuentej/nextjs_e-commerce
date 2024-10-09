@@ -7,7 +7,7 @@ import Image from "next/image";
 import { useForm } from "react-hook-form";
 
 interface Props {
-  product: Product & { ProductImage?: ProductImage[]};
+  product: Partial<Product> & { ProductImage?: ProductImage[]};
   categories: CategoryProduct[];
 };
 
@@ -28,7 +28,7 @@ const sizes : Size[]= ["XS", "S", "M", "L", "XL", "XXL"];
 
 
 export const ProductForm = ({ product, categories }: Props) => {
-  console.log('product', product)
+ // console.log('product', product)
 
   const {handleSubmit, register, formState: {isValid}, getValues, setValue, watch} = useForm<FormInputs>({defaultValues:{
     ...product,
@@ -45,7 +45,9 @@ export const ProductForm = ({ product, categories }: Props) => {
 
     const {...productToSave} = data;
 
-    formData.append('id', product.id ?? '');
+    if (product.id){
+      formData.append('id', product.id ?? '');
+    }
     formData.append('title', productToSave.title);
     formData.append('slug', productToSave.slug);
     formData.append('description', productToSave.description);
@@ -65,7 +67,7 @@ export const ProductForm = ({ product, categories }: Props) => {
 
    (sizes.has(size)) ? sizes.delete(size) : sizes.add(size);
 
-   console.log(sizes)
+   console.log('sizes',sizes)
     setValue('sizes', Array.from(sizes));
   }
 
@@ -157,8 +159,20 @@ export const ProductForm = ({ product, categories }: Props) => {
         </button>
       </div>
 
-      {/* Selector de tallas y fotos */}
+
+      {/* size selector photos and stock */}
       <div className="w-full">
+
+        {/* stock */}
+        <div className="flex flex-col mb-2">
+          <span>Stock</span>
+          <input 
+            type="number" 
+            className="p-2 border rounded-md bg-purple-100" 
+            {...register('inStock', {required:true, min:0})}
+            />
+        </div>
+
         {/* As checkboxes */}
         <div className="flex flex-col">
 
