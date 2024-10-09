@@ -5,6 +5,7 @@
 //import { Size } from '@/interfaces';
 import prisma from '@/lib/prisma';
 import { Gender, Product, Size} from '@prisma/client';
+import { revalidatePath } from 'next/cache';
 
 import {z} from 'zod';
 
@@ -54,7 +55,8 @@ export const createUpdateProduct = async(formData: FormData) => {
 
    const{id,...rest} = product;
 
-   const prismaTx = await prisma.$transaction( async(tx) => {
+   try{
+    const prismaTx = await prisma.$transaction( async(tx) => {
 
         let product: Product;
         const tagsArray = rest.tags.split(',').map( tag => tag.toLowerCase())
@@ -98,9 +100,21 @@ export const createUpdateProduct = async(formData: FormData) => {
         }
    });
 
+   // revalidate paths
+   revalidatePath('/admin/products');
+   revalidatePath(`/admin/products/${product.slug}`);
+   revalidatePath(`/admin/product/${product.slug}`);
+   return {
+    ok: true,
+    product: prismaTx.product,
+   }
 
+   }catch(error){
+    console.log(error)
+        return {
+            ok:false,
+            message: "Product couldn't be updated/created"
+        }
+   }
 
-    return {
-        ok: true,
-    }
 }

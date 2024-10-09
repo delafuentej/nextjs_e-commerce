@@ -5,6 +5,7 @@ import { createUpdateProduct } from "@/actions";
 import clsx from "clsx";
 import Image from "next/image";
 import { useForm } from "react-hook-form";
+import { useRouter } from "next/navigation";
 
 interface Props {
   product: Partial<Product> & { ProductImage?: ProductImage[]};
@@ -28,6 +29,8 @@ const sizes : Size[]= ["XS", "S", "M", "L", "XL", "XXL"];
 
 
 export const ProductForm = ({ product, categories }: Props) => {
+
+  const router = useRouter();
  // console.log('product', product)
 
   const {handleSubmit, register, formState: {isValid}, getValues, setValue, watch} = useForm<FormInputs>({defaultValues:{
@@ -58,8 +61,13 @@ export const ProductForm = ({ product, categories }: Props) => {
     formData.append('categoryId', productToSave.categoryId);
     formData.append('gender', productToSave.gender);
     
-   const {ok} =  await createUpdateProduct(formData);
-   console.log(ok)
+   const {ok, product: updatedProduct} =  await createUpdateProduct(formData);
+
+   if(!ok){
+    alert("Product couldn't be updated")
+    return;
+   }
+    router.replace(`/admin/product/${updatedProduct?.slug}`)
   }
 
   const onSizeChanged = (size: string) => {
@@ -232,7 +240,7 @@ export const ProductForm = ({ product, categories }: Props) => {
 
                   <button 
                     type='button'
-                    className="bg-red-500  text-white font-bold p-2 rounded-b-xl  w-full animate-pulse shadow-xl"
+                    className="bg-black  text-white font-bold p-2 rounded-b-xl  w-full animate-pulse shadow-xl"
                     onClick={()=>console.log(image.id, image.url)}
                     >
                     Delete
