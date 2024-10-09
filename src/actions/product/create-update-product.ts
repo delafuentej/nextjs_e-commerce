@@ -6,6 +6,10 @@
 import prisma from '@/lib/prisma';
 import { Gender, Product, Size} from '@prisma/client';
 import { revalidatePath } from 'next/cache';
+import {v2 as cloudinary} from 'cloudinary';
+
+cloudinary.config(process.env.CLOUDINARY_URL ?? '');
+console.log('CLOUDINARY_URL',process.env.CLOUDINARY_URL)
 
 import {z} from 'zod';
 
@@ -97,7 +101,9 @@ export const createUpdateProduct = async(formData: FormData) => {
 
        // images loading/saving process
        if( formData.getAll('images')){
-        console.log(formData.getAll('images'));
+        // [htts://url.jpg, htts://url.jpg]
+        const images = await uploadImages(formData.getAll('images') as File[]);
+        console.log('images',images)
        }
 
         return {
@@ -121,5 +127,34 @@ export const createUpdateProduct = async(formData: FormData) => {
             message: "Product couldn't be updated/created"
         }
    }
+};
 
+const uploadImages = async(images: File[]) => {
+
+    try{
+        const uploadPromises = images.map(async(image: File)=> {
+
+            try{
+                 // as image has no path, but the name's file
+                const buffer = await image.arrayBuffer();
+                const base64Image = Buffer.from(buffer).toString('base64');
+    
+                return cloudinary.uploader.upload(`data:image/png;base64,${base64Image}`)
+                        .then( resp => resp.secure_url)
+    
+            }catch(error){
+                console.log(error);
+                return null;
+            }
+        })
+
+        const uploadedImages = await Promise.all(uploadPromises);
+
+        return uploadedImages;
+           
+    }catch(error){
+        console.log(error);
+        return null;
+
+    }
 }
