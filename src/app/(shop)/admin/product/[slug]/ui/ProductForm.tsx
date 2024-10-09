@@ -22,6 +22,9 @@ interface FormInputs {
   tags: string;
   gender: Category;
   categoryId: string;
+
+  //images
+  images?: FileList;
 }
 
 const sizes : Size[]= ["XS", "S", "M", "L", "XL", "XXL"];
@@ -37,6 +40,7 @@ export const ProductForm = ({ product, categories }: Props) => {
     ...product,
     tags: product.tags?.join(', '),
     sizes:  product.sizes ?? [],
+    images: undefined,
 
   }}); 
 // for the ui to update changes => watch
@@ -46,7 +50,7 @@ export const ProductForm = ({ product, categories }: Props) => {
     //new FormData() => to create the object which is then sent to the server.
     const formData = new FormData();
 
-    const {...productToSave} = data;
+    const {images,...productToSave} = data;
 
     if (product.id){
       formData.append('id', product.id ?? '');
@@ -60,6 +64,13 @@ export const ProductForm = ({ product, categories }: Props) => {
     formData.append('tags', productToSave.tags);
     formData.append('categoryId', productToSave.categoryId);
     formData.append('gender', productToSave.gender);
+
+    //console.log('images', images)
+    if(images){
+      for(let i= 0; i< images.length; i++){
+        formData.append('images', images[i]);
+      }
+    }
     
    const {ok, product: updatedProduct} =  await createUpdateProduct(formData);
 
@@ -213,11 +224,12 @@ export const ProductForm = ({ product, categories }: Props) => {
           <div className="flex flex-col mb-2">
 
             <span>Pictures</span>
-            <input 
+            <input
+              {...register('images')} 
               type="file"
               multiple 
               className="p-2 border rounded-md bg-purple-100" 
-              accept="image/png, image/jpeg"
+              accept="image/png, image/jpeg, image/avif"
 
             />
 

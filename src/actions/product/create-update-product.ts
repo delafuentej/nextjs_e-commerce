@@ -93,7 +93,12 @@ export const createUpdateProduct = async(formData: FormData) => {
             }
            })
         }
-        console.log('product',{ product})
+       // console.log('product',{ product})
+
+       // images loading/saving process
+       if( formData.getAll('images')){
+        console.log(formData.getAll('images'));
+       }
 
         return {
             product
