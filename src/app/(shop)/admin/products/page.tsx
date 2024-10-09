@@ -1,10 +1,9 @@
 // https://tailwindcomponents.com/component/hoverable-table
 export const revalidate = 0;
 import { getPaginatedProductsWithImages } from '@/actions';
-import { Title, Pagination } from '@/components';
-import Image from 'next/image';
+import { Title, Pagination, ProductImage } from '@/components';
 import Link from 'next/link';
-import { IoAddCircleOutline, IoAddOutline, IoAddSharp, IoBagAdd, IoCardOutline } from 'react-icons/io5';
+import {  IoAddOutline } from 'react-icons/io5';
 import { currencyFormat } from '@/utils/currencyFormat';
 
 
@@ -81,8 +80,8 @@ export default async function Products({searchParams}:Props) {
                   href={`/product/${product.slug}`}
                 
                   >
-                    <Image 
-                      src={`/products/${product!.ProductImage[0].url}`}
+                    <ProductImage
+                      src={product!.ProductImage[0]?.url}
                       width={90}
                       height={90}
                       alt={product!.title}

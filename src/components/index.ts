@@ -22,4 +22,5 @@ export {QuantitySelector} from './product/quantity-selector/QuantitySelector';
 export {ProductMobileSlideshow} from './product/slideshow/ProductMobileSlideshow';
 export {ProductSlideshow} from './product/slideshow/ProductSlideshow';
 export {StockLabel} from './product/stock-label/StockLabel';
+export {ProductImage} from './product/product-image/ProductImage';
 
