@@ -1,7 +1,7 @@
 "use client";
 
 import type { Product, ProductImage as ProductWithImage, CategoryProduct, Category, Size } from "@/interfaces";
-import { createUpdateProduct } from "@/actions";
+import { createUpdateProduct, deleteProductImage } from "@/actions";
 import clsx from "clsx";
 import { useForm } from "react-hook-form";
 import { useRouter } from "next/navigation";
@@ -253,7 +253,7 @@ export const ProductForm = ({ product, categories }: Props) => {
                   <button 
                     type='button'
                     className="bg-black  text-white font-bold p-2 rounded-b-xl  w-full animate-pulse shadow-xl"
-                    onClick={()=>console.log(image.id, image.url)}
+                    onClick={()=>deleteProductImage(image.id, image.url)}
                     >
                     Delete
                   </button>

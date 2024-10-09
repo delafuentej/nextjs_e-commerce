@@ -9,7 +9,7 @@ import { revalidatePath } from 'next/cache';
 import {v2 as cloudinary} from 'cloudinary';
 
 cloudinary.config(process.env.CLOUDINARY_URL ?? '');
-console.log('CLOUDINARY_URL',process.env.CLOUDINARY_URL)
+
 
 import {z} from 'zod';
 
