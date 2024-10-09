@@ -4,12 +4,13 @@ import { ProductForm } from "./ui/ProductForm";
 import { getProductBySlug } from '../../../../../actions/product/get-product-by-slug';
 import { redirect } from "next/navigation";
 import { getCategories } from "@/actions";
+
+
 interface Props {
     params: {
         slug: string;
     }
 }
-
 
 export default async function Product({params}: Props) {
 

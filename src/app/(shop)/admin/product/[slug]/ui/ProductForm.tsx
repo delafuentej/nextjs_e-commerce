@@ -1,6 +1,6 @@
 "use client";
 
-import type { Product, ProductImage as ProductWithImage, CategoryProduct, Category, Size } from "@/interfaces";
+import type { Product, ProductImage as ProductWithImage, Category, Size } from "@/interfaces";
 import { createUpdateProduct, deleteProductImage } from "@/actions";
 import clsx from "clsx";
 import { useForm } from "react-hook-form";
@@ -9,7 +9,7 @@ import { ProductImage } from "@/components";
 
 interface Props {
   product: Partial<Product> & { ProductImage?: ProductWithImage[]};
-  categories: CategoryProduct[];
+  categories: Category[];
 };
 
 interface FormInputs {
@@ -36,13 +36,21 @@ export const ProductForm = ({ product, categories }: Props) => {
   const router = useRouter();
  // console.log('product', product)
 
-  const {handleSubmit, register, /* formState: {isValid} */ getValues, setValue, watch} = useForm<FormInputs>({defaultValues:{
+  const {
+    handleSubmit, 
+    register, 
+    formState: {isValid},
+    getValues,
+    setValue, 
+    watch} = useForm<FormInputs>({
+      defaultValues:{
     ...product,
     tags: product.tags?.join(', '),
     sizes:  product.sizes ?? [],
+    //gender: product.gender ? { id: product.gender, name: product.gender },
     images: undefined,
-
-  }}); 
+  },
+}); 
 // for the ui to update changes => watch
   watch('sizes');
 
@@ -68,7 +76,7 @@ export const ProductForm = ({ product, categories }: Props) => {
     //console.log('images', images)
     if(images){
       for(let i= 0; i< images.length; i++){
-        formData.append('images', images[i]);
+        formData.append('images', images[i])
       }
     }
     
@@ -101,7 +109,6 @@ export const ProductForm = ({ product, categories }: Props) => {
           <span>Title</span>
           <input 
             type="text" 
-            //value='ppp' 
             className="p-2 border rounded-md bg-purple-100" 
             {...register('title', {required:true})}
           />
@@ -121,7 +128,6 @@ export const ProductForm = ({ product, categories }: Props) => {
           <textarea
             rows={5}
             className="p-2 border rounded-md bg-purple-100"
-            //value='fff'
             {...register('description', {required:true})}
           ></textarea>
         </div>

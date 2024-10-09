@@ -10,14 +10,12 @@ export const getCategories = async() => {
                 name: 'asc',
             }
         });
+        console.log('categories',categories)
         return categories;
 
     }catch(error){
         console.log(error);
-        return {
-            ok: false,
-            message: "Categories couldn't be obtained"
-        }
+        return [];
     }
 }
 
