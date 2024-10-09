@@ -3,7 +3,7 @@
 import { auth } from "@/auth.config";
 import { Address, Size } from "@/interfaces";
 import prisma from "@/lib/prisma";
-import { SidebarItem } from '../../components/ui/sidebar/SidebarItem';
+
 
 interface ProductToOrder {
     productId: string;
@@ -127,7 +127,7 @@ export const placeOrder = async( productIds: ProductToOrder[], address: Address)
         // validate, if price  = 0, throw error
 
         // create address order
-         const {country, _userId, id,...restAddress} = address;
+         const {country,...restAddress} = address;
          
            console.log('restAddress',{restAddress})
         const orderAddress = await tx.orderAddress.create({

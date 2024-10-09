@@ -1,7 +1,7 @@
 
 
 import Link from "next/link";
-import { redirect } from "next/navigation";
+//import { redirect } from "next/navigation";
 import { Title } from "@/components";
 import { IoCartOutline, IoAddCircleSharp, IoBagOutline } from "react-icons/io5";
 import { ProductsInCart } from "./ui/ProductsInCart";

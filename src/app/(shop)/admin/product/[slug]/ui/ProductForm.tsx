@@ -36,7 +36,7 @@ export const ProductForm = ({ product, categories }: Props) => {
   const router = useRouter();
  // console.log('product', product)
 
-  const {handleSubmit, register, formState: {isValid}, getValues, setValue, watch} = useForm<FormInputs>({defaultValues:{
+  const {handleSubmit, register, /* formState: {isValid} */ getValues, setValue, watch} = useForm<FormInputs>({defaultValues:{
     ...product,
     tags: product.tags?.join(', '),
     sizes:  product.sizes ?? [],

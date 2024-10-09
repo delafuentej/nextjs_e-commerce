@@ -1,6 +1,6 @@
 export const revalidate = 604800;// seven days 60*60*24*7
 
-import { Metadata, ResolvingMetadata } from "next";
+import { Metadata/* , ResolvingMetadata */ } from "next";
 import { getProductBySlug } from "@/actions";
 import { ProductSlideshow, ProductMobileSlideshow, StockLabel } from "@/components";
 import { titleFont } from "@/config/fonts";
@@ -21,7 +21,7 @@ interface Props {
 
 export async function generateMetadata(
   { params}: Props,
-  parent: ResolvingMetadata
+ /*  parent: ResolvingMetadata */
 ): Promise<Metadata> {
   // read route params
   const slug = params.slug;

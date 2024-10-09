@@ -15,16 +15,17 @@ export const StockLabel = ({slug}: Props) => {
 
     
     useEffect(()=> {
+        const getStock = async() => {
+            // call to server actions
+            const inStock = await getStockBySlug(slug);
+            setStock(inStock);
+            setIsLoading(false);
+            console.log('inStock', inStock);
+        }
         getStock();
-    },[stock]);
+    },[slug]);
 
-    const getStock = async() => {
-        // call to server actions
-        const inStock = await getStockBySlug(slug);
-        setStock(inStock);
-        setIsLoading(false);
-        console.log('inStock', inStock);
-    }
+    
 
   return (
     <>

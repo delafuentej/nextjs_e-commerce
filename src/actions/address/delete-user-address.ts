@@ -10,6 +10,7 @@ export const deleteUserAddress = async(userId: string) => {
         })
         return{
             ok:true,
+            deletedAddress: deletedAddress,
         }
 
     }catch(error){

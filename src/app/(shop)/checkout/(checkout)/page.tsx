@@ -1,5 +1,4 @@
 import { Title } from "@/components";
-import Image from "next/image";
 import Link from "next/link";
 import {   IoBagCheckOutline, IoCartOutline,  IoPencilOutline } from "react-icons/io5";
 import { ProductsInCart } from "./ui/ProductsInCart";

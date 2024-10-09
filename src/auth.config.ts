@@ -12,7 +12,7 @@ export const authConfig : NextAuthConfig= {
     newUser: '/auth/new-account',
   },
   callbacks: {
-    authorized({ auth, request: {nextUrl}}){
+    authorized({ auth/* , request: {nextUrl} */}){
       console.log('auth',{auth})
       // const isLoggedIn = !!auth?.user;
       // const isOnDashboard = nextUrl.pathname.startsWith('/dashboard');

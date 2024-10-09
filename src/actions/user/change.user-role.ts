@@ -28,7 +28,7 @@ export const changeUserRole = async(userId: string, role: string) => {
 
         return {
             ok: true,
-           
+           user: user,
         }
 
     }catch(error){
