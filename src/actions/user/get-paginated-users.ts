@@ -7,7 +7,7 @@ import { auth } from "@/auth.config";
 interface PaginationOptions {
     page?: number;
     take?: number;
-}
+};
 
 export const getPaginatedUsers = async ({
     page = 1,

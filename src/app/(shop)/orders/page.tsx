@@ -5,35 +5,44 @@ import { Title } from '@/components';
 import Link from 'next/link';
 import { redirect } from 'next/navigation';
 import { IoCardOutline } from 'react-icons/io5';
+import { Pagination } from '@/components';
 
 
-export default async function OrdersList() {
+interface Props {
+  searchParams: {
+    page?: string
+  }
+};
 
-  const {ok, orders} = await getOrdersByUser();
+export default async function OrdersList({searchParams}:Props) {
+
+  const page = searchParams.page ? parseInt(searchParams.page) : 1;
+     
+  const {ok, orders, totalPages} = await getOrdersByUser({page});
 
   if(!ok){
     redirect('/auth/login');
   }
  
-  console.log('orders',orders);
+ // console.log('orders',orders);
   return (
     <>
       <Title title="Orders" />
 
       <div className="mb-10">
         <table className="min-w-full">
-          <thead className="bg-gray-200 border-b">
+          <thead className="bg-purple-500  font-extrabold text-white border-b">
             <tr>
-              <th scope="col" className="text-sm font-medium text-gray-900 px-6 py-4 text-left">
+              <th scope="col" className="text-sm  px-6 py-4 text-left">
                 #ID
               </th>
-              <th scope="col" className="text-sm font-medium text-gray-900 px-6 py-4 text-left">
+              <th scope="col" className="text-sm  px-6 py-4 text-left">
               Full Name
               </th>
-              <th scope="col" className="text-sm font-medium text-gray-900 px-6 py-4 text-left">
+              <th scope="col" className="text-sm px-6 py-4 text-left">
                 Status
               </th>
-              <th scope="col" className="text-sm font-medium text-gray-900 px-6 py-4 text-left">
+              <th scope="col" className="text-sm  px-6 py-4 text-left">
                 Options
               </th>
             </tr>
@@ -88,6 +97,7 @@ export default async function OrdersList() {
 
           </tbody>
         </table>
+        <Pagination totalPages={totalPages}/>
       </div>
     </>
   );

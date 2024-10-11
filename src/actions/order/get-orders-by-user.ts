@@ -2,7 +2,20 @@
 import { auth } from "@/auth.config";
 import prisma from "@/lib/prisma";
 
-export const getOrdersByUser = async() => {
+
+interface PaginationOptions {
+    page?: number;
+    take?: number;
+};
+
+export const getOrdersByUser = async({
+    page = 1,
+    take = 10,
+}: PaginationOptions) => {
+
+    if(isNaN(Number(page))) page = 1;
+    if(page < 1) page = 1;
+
 
     const session = await auth();
 
@@ -15,6 +28,8 @@ export const getOrdersByUser = async() => {
     
     try{
         const orders = await prisma.order.findMany({
+            take: take,
+            skip: (page -1) * take,
            where: {
             userId: session!.user.id
            },
@@ -27,9 +42,22 @@ export const getOrdersByUser = async() => {
             },
            }
         });
+       // console.log('ordersByUser', orders)
+
+       const totalOrdersByUser = await prisma.order.count({
+            where: {
+                userId: session!.user.id,
+            },
+       });
+
+       // obtail the number total of pages
+       const totalPages = Math.ceil( totalOrdersByUser/ take);
         return {
             ok:true,
             orders: orders,
+            currentPage: page,
+            totalPages: totalPages,
+            totalOrdersByUser: totalOrdersByUser,
         };
 
 
@@ -38,7 +66,7 @@ export const getOrdersByUser = async() => {
        //throw new Error(`There is no order by Id:${orderId}`)
        return {
             ok: false,
-            message: `No orders`
+            message: `No orders- Error retrieving orders`
 
        }
     }

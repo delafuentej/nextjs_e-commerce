@@ -7,9 +7,18 @@ import { redirect } from 'next/navigation';
 import { IoCardOutline } from 'react-icons/io5';
 
 
-export default async function Orders() {
 
-  const {ok, orders} = await getPaginatedOrders();
+interface Props {
+  searchParams: {
+    page?: string
+  }
+};
+   
+export default async function Orders({searchParams}:Props) {
+
+  const page = searchParams.page ? parseInt(searchParams.page) : 1;
+     
+  const {ok, orders, totalPages} = await getPaginatedOrders({page});
 
   if(!ok){
     redirect('/auth/login');
@@ -22,18 +31,18 @@ export default async function Orders() {
 
       <div className="mb-10">
         <table className="min-w-full">
-          <thead className="bg-purple-500  text-white font-bold border-b">
+          <thead className="bg-purple-500  text-white border-b ">
             <tr>
-              <th scope="col" className="text-sm  px-6 py-4 text-left">
+              <th scope="col" className="text-sm px-6 py-4 text-left font-extrabold">
                 #ID
               </th>
-              <th scope="col" className="text-sm  px-6 py-4 text-left">
+              <th scope="col" className="text-sm  px-6 py-4 text-left font-extrabold">
               Full Name
               </th>
-              <th scope="col" className="text-sm px-6 py-4 text-left">
+              <th scope="col" className="text-sm px-6 py-4 text-left font-extrabold">
                 Status
               </th>
-              <th scope="col" className="text-sm  px-6 py-4 text-left">
+              <th scope="col" className="text-sm  px-6 py-4 text-left font-extrabold">
                 Options
               </th>
             </tr>
@@ -88,7 +97,7 @@ export default async function Orders() {
 
           </tbody>
         </table>
-        <Pagination totalPages={3}/>
+        <Pagination totalPages={totalPages}/>
       </div>
     </>
   );

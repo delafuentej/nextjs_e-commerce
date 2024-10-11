@@ -10,7 +10,7 @@ interface Props {
   searchParams: {
     page?: string
   }
-}
+};
 
 export default async function Users({searchParams}: Props) {
 
