@@ -24,7 +24,7 @@ export default async function Profile() {
         title='Profile'
      />
      <hr />
-     <div className="flex flex-col md:flex-row mt-36 justify-evenly items-center ">
+     <div className="flex flex-col md:flex-row mt-24 justify-evenly items-center ">
        <Image 
        className="rounded-full mb-24 justify-center"
        src={session.user.image ?? '/imgs/profile.jpg'}
@@ -33,7 +33,7 @@ export default async function Profile() {
        alt='Foto user'
        />
 
-       <div className="flex flex-col justify-center align-top">
+       <div className="flex flex-col justify-center align-top h-100">
 
         <ProfileItem 
         label='User-Id'
@@ -42,7 +42,7 @@ export default async function Profile() {
         
         <ProfileItem 
         label='Name'
-        info= {`${session.user!.firsName} ${session.user?.lastName}`}
+        info= {`${session.user!.firstName} ${session.user?.lastName}`}
         />
 
         <ProfileItem 
