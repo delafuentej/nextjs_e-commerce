@@ -1,10 +1,39 @@
 'use client';
 
+import React, { useEffect, useState } from 'react';
+import Link from 'next/link';
 import { titleFont } from '@/config/fonts'
-import { useCartStore, useUIStore } from '@/store'
-import Link from 'next/link'
-import React, { useEffect, useState } from 'react'
-import { IoSearchOutline, IoCartOutline } from 'react-icons/io5'
+import { useCartStore, useUIStore } from '@/store';
+import { TopMenuCenterItem } from './TopMenuCenterItem';
+
+
+import { IoSearchOutline, IoCartOutline } from 'react-icons/io5';
+
+
+
+const topMenuCenterItems = [
+  {
+    path:'/gender/men',
+    title: 'Men',
+
+  },
+  {
+    path:'/gender/women',
+    title: 'Women',
+
+  },
+  {
+    path:'/gender/kid',
+    title: 'Kid',
+
+  },
+  {
+    path:'/gender/unisex',
+    title: 'Unisex',
+
+  },
+
+]
 
 export const TopMenu = () => {
 
@@ -25,33 +54,22 @@ export const TopMenu = () => {
         <Link
          href="/"
          >
-          <span className={`${titleFont.className} antialiased font-bold`}>PASSION</span>
-          <span> | Online-Shop</span>
+          <span className={`${titleFont.className} antialiased font-bold`}>PASSION | Online-Shop</span>
+         
         </Link>
       </div>
-      {/* center menu */}
+      {/* top menu center */}
       <div className='hidden sm:block'>
 
-        <Link 
-          className='m-2 p-2 rounded-md transition-all hover:bg-purple-200'
-          href="/gender/men"
-        > Men</Link>
-
-        <Link 
-          className='m-2 p-2 rounded-md transition-all hover:bg-purple-200'
-          href="/gender/women"
-        > Women</Link>
-
-        <Link 
-          className='m-2 p-2 rounded-md transition-all hover:bg-purple-200'
-          href="/gender/kid"
-        > Kid</Link>
-
-      <Link 
-          className='m-2 p-2 rounded-md transition-all hover:bg-purple-200'
-          href="/gender/unisex"
-        > Unisex</Link>
-
+        {
+          topMenuCenterItems.map(item => (
+            <TopMenuCenterItem 
+            key={item.title} 
+            href={item.path}
+            title={item.title}
+            />
+          ))
+        }
 
       </div>
 
@@ -72,12 +90,12 @@ export const TopMenu = () => {
             ((totalItems === 0 && loaded)) ? '/empty' : '/cart'
           }
         >
-          <div className='relative'>
+          <div className='relative p-2  hover:bg-purple-400 rounded hover:text-white hover:fade-in'>
             {/* span => num. items in shopping-cart */}
             {
              (loaded && totalItems > 0) && (
               <span 
-                className='fade-in absolute text-xs rounded-full px-1 font-bold -top-2 -right-2 text-white bg-purple-500'>
+                className='px-1 absolute text-xs rounded-full  font-bold -top-1 -right-1 text-white bg-purple-500 animate-bounce'>
                 {totalItems}
               </span>
              )
@@ -91,14 +109,10 @@ export const TopMenu = () => {
         {/* menu button */}
         <button
         onClick={openMenu}
-        className='m-2 p-2 rounded-md transition-all hover:bg-purple-200'
+        className='m-2 p-2 font-bold rounded-md transition-all hover:bg-purple-400 hover:text-white'
         >
           Menu
         </button>
-
-
-       
-
       </div>
      
     </nav>
