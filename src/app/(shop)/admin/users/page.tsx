@@ -6,11 +6,18 @@ import { UsersTable } from './ui/UsersTable';
 import { redirect } from 'next/navigation';
 
 
+interface Props {
+  searchParams: {
+    page?: string
+  }
+}
 
-export default async function Users() {
+export default async function Users({searchParams}: Props) {
 
-  const {ok, users =[]} = await getPaginatedUsers();
+  const page = searchParams.page ? parseInt(searchParams.page) : 1;
 
+  const {ok, users =[], totalPages} = await getPaginatedUsers({page});
+  console.log('totalPagesXXx', totalPages)
   if(!ok){
     redirect('/auth/login');
   }
@@ -24,7 +31,7 @@ export default async function Users() {
         <UsersTable 
         users={users}
         />
-        <Pagination totalPages={1}/>
+        <Pagination totalPages={totalPages}/>
       </div>
     </>
   );
