@@ -10,7 +10,7 @@ import { logout } from '@/actions';
 
 
 export const Sidebar = () => {
-
+   
         const isSidebarOpen = useUIStore(state => state.isSidebarOpen);
         const closeMenu = useUIStore( state => state.closeSidebar);
 
