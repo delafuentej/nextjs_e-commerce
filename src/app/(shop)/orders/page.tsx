@@ -30,7 +30,7 @@ export default async function OrdersList({searchParams}:Props) {
       <Title title="Orders" />
 
       <div className="mb-10">
-        <table className="min-w-full">
+        <table className="min-w-full shadow-lg rounded-lg">
           <thead className="bg-purple-500  font-extrabold text-white border-b">
             <tr>
               <th scope="col" className="text-sm  px-6 py-4 text-left">

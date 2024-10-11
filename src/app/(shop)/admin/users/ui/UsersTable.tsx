@@ -9,7 +9,7 @@ interface Props {
 export const UsersTable = ({users}:Props) => {
     
   return (
-    <table className="min-w-full ">
+    <table className="min-w-full shadow-lg rounded-lg">
     <thead className="bg-purple-500 border-b text-white font-bold">
       <tr>
         <th scope="col" className="text-sm font-bold px-6 py-4 text-left">
@@ -46,11 +46,11 @@ export const UsersTable = ({users}:Props) => {
             </td>
             <td className="text-sm text-purple-900 font-light px-6 ">
                 <select 
-                    className="text-sm w-1/2 p-2 rounded text-purple-700 font-bold"
+                    className="text-sm p-2 rounded text-purple-700 font-bold"
                     value={user.role}
                     onChange={ e => changeUserRole(user!.id, e.target.value)}
                 >
-                    <option value="admin">Admin</option>
+                    <option className="" value="admin">Admin</option>
                     <option value="user">User</option>
 
                 </select>

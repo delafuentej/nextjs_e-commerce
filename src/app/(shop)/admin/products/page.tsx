@@ -34,27 +34,29 @@ export default async function Products({searchParams}:Props) {
           </Link>
       </div>
 
+
+
       <div className="mb-10">
-        <table className="min-w-full">
+        <table className="table-auto min-w-full shadow-lg rounded-lg">
           <thead className="bg-purple-500  text-white font-bold border-b">
             <tr>
            
-              <th scope="col" className="text-sm  px-6 py-4 text-left">
+              {/* <th scope="col" className="text-sm  px-6 py-4 text-left  w-32 sm:w-auto">
               Product-Id
-              </th>
-              <th scope="col" className="text-sm  px-6 py-4 text-left">
+              </th> */}
+              <th scope="col" className="text-sm  px-6 py-4 text-left  sm:w-18 ">
               Photo
               </th>
-              <th scope="col" className="text-sm  px-6 py-4 text-left">
+              <th scope="col" className="text-sm  px-6 py-4 text-left w-32 sm:w-auto">
                 Title
               </th>
-              <th scope="col" className="text-sm px-6 py-4 text-left">
+              <th scope="col" className="text-sm px-6 py-4 text-left  sm:w-10">
                 Price
               </th>
-              <th scope="col" className="text-sm  px-6 py-4 text-left">
+              <th scope="col" className="text-sm  px-6 py-4 text-left  sm:w-10">
                 Gender
               </th>
-              <th scope="col" className="text-sm  px-6 py-4 text-left">
+              <th scope="col" className="text-sm  px-6 py-4 text-left  sm:w-10">
                 Stock
               </th>
               <th scope="col" className="text-sm  px-6 py-4 text-left">
@@ -72,7 +74,7 @@ export default async function Products({searchParams}:Props) {
                   className="bg-white border-b transition duration-300 ease-in-out hover:bg-purple-100">
 
                      {/* product id */}
-                  <td className="px-6 py-4 whitespace-nowrap text-sm  text-purple-800 font-bold">{product!.id.split('-').at(-1)?.toUpperCase()}</td>
+                  {/* <td className="px-6 py-4 whitespace-nowrap text-sm  text-purple-800 font-bold  w-32 sm:w-auto">{product!.id.split('-').at(-1)?.toUpperCase()}</td> */}
 
                   {/* img product*/}
                   <td className="px-6 py-4 whitespace-nowrap text-sm  text-gray-900 font-bold">
@@ -93,16 +95,16 @@ export default async function Products({searchParams}:Props) {
                   </td>  
                  
                   {/* product title */}
-                  <td className="text-sm text-gray-900 font-bold px-6 py-4 whitespace-nowrap">
+                  <td className="px-4 py-2 text-sm text-gray-900 font-bold w-32 truncate sm:w-auto">
                     <Link
                     href={`/admin/product/${product.slug}`}
-                    className='font-bold hover:underline hover:text-purple-500' 
+                    className='font-bold hover:underline hover:text-purple-500 text-wrap' 
                     >
                      {product!.title}
                     </Link>
                   </td>
                   {/* price */}
-                  <td className=" text-sm  text-purple-800 font-bold px-6 py-4 whitespace-nowrap">
+                  <td className=" text-sm  text-purple-800 font-bold px-6 py-4 whitespace-nowrap  sm:w-10">
 
                    {currencyFormat(product!.price)}
   
@@ -110,15 +112,15 @@ export default async function Products({searchParams}:Props) {
 
 
                   {/* genre */}
-                  <td className=" text-sm text-purple-900 font-semibold px-6 py-4 whitespace-nowrap">
+                  <td className=" text-sm text-purple-900 font-semibold px-6 py-4 whitespace-nowrap  sm:w-10">
                       {(product!.gender).charAt(0).toUpperCase() + (product!.gender).slice(1)}
                   </td>
                 {/* stock */}
-                  <td className=" text-sm text-purple-900 font-bold px-6 py-4 whitespace-nowrap">
+                  <td className=" text-sm text-purple-900 font-bold px-6 py-4 whitespace-nowrap  sm:w-10">
                       {product!.inStock}
                   </td>
                    {/* sizes */}
-                   <td className=" text-sm text-purple-900 font-semibold px-6 py-4 whitespace-nowrap">
+                   <td className=" text-sm text-purple-900 font-semibold px-6 py-4 whitespace-wrap">
                       {product!.sizes.join(', ')}
                   </td>
 
