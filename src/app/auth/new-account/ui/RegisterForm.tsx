@@ -48,7 +48,7 @@ export const RegisterForm = () => {
   return (
     <form  
         onSubmit={handleSubmit(onSubmit)}
-        className="flex flex-col"
+        className="flex flex-col  max-w-md mx-auto px-4 sm:px-6 lg:px-8 space-y-4"
     >
 
         {
@@ -58,14 +58,14 @@ export const RegisterForm = () => {
         }
 
     <label 
-        
+         className="text-sm font-semibold"
         htmlFor="firstName">First Name</label>
       <input
         id='firstName'
         autoFocus
         className={
             clsx(
-                "px-5 py-2 border bg-purple-100 rounded mb-5",
+                "px-5 py-2 border bg-purple-100 rounded focus:outline-none focus:ring-2 focus:ring-purple-500 transition duration-300",
                 {
                 'border-red-500': errors.firstName
                 }
@@ -82,14 +82,14 @@ export const RegisterForm = () => {
         }
 
     <label 
-     
+    className="text-sm font-semibold"
     htmlFor="lastName">Last Name</label>
       <input
         id='lastName'
         autoFocus
         className={
             clsx(
-                "px-5 py-2 border bg-purple-100 rounded mb-5",
+                "px-5 py-2 border bg-purple-100 rounded focus:outline-none focus:ring-2 focus:ring-purple-500 transition duration-300",
                 {
                 'border-red-500': errors.lastName
                 }
@@ -106,14 +106,14 @@ export const RegisterForm = () => {
         }
 
       <label 
-      
+       className="text-sm font-semibold"
       htmlFor="email">E-Mail</label>
       <input
         id='email'
         autoFocus
         className={
             clsx(
-                "px-5 py-2 border bg-purple-100 rounded mb-5",
+                "px-5 py-2 border bg-purple-100 rounded focus:outline-none focus:ring-2 focus:ring-purple-500 transition duration-300",
                 {
                 'border-red-500': errors.email
                 }
@@ -137,14 +137,14 @@ export const RegisterForm = () => {
         }
 
       <label 
-
+     className="text-sm font-semibold"
       htmlFor="password">Password</label>
       <input
         id='password'
         autoFocus
         className={
             clsx(
-                "px-5 py-2 border bg-purple-100 rounded mb-5",
+                "px-5 py-2 border bg-purple-100 rounded focus:outline-none focus:ring-2 focus:ring-purple-500 transition duration-300",
                 {
                 'border-red-500': errors.password
                 }
@@ -166,10 +166,10 @@ export const RegisterForm = () => {
 
       {/* divisor l ine */ }
       <div className="flex items-center my-5">
-        <div className="flex-1 border-t border-gray-500"></div>
-        <div className="px-2 text-gray-800">O</div>
-        <div className="flex-1 border-t border-gray-500"></div>
-      </div>
+          <div className="flex-1 border-t border-gray-300"></div>
+          <div className="px-2 text-gray-500">O</div>
+          <div className="flex-1 border-t border-gray-300"></div>
+        </div>
 
       <Link
         href="/auth/login" 
