@@ -127,7 +127,7 @@ export const placeOrder = async( productIds: ProductToOrder[], address: Address)
         // validate, if price  = 0, throw error
 
         // create address order
-         const {country,...restAddress} = address;
+         const {country, _userId, id,...restAddress} = address;
          
            console.log('restAddress',{restAddress})
         const orderAddress = await tx.orderAddress.create({

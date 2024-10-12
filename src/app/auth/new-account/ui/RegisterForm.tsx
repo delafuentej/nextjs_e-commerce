@@ -17,8 +17,6 @@ type FormInputs = {
 
 }
 
-
-
 export const RegisterForm = () => {
 
      const[errorMsg, setErrorMsg] = useState('')
@@ -29,7 +27,7 @@ export const RegisterForm = () => {
         setErrorMsg('');
        
         const {firstName, lastName, email, password} = data;
-        //console.log( {firstName, lastName, email, password})
+        console.log( {firstName, lastName, email, password})
             // server action
         const resp = await registerUser(firstName, lastName, email, password);
 
@@ -151,7 +149,7 @@ export const RegisterForm = () => {
             )
         }
         type="password" 
-        {...register('password', {required: true, minLength:8})}
+        {...register('password', {required: true, minLength:6})}
     />
         <span className="text-red-500">{errorMsg}</span>
 

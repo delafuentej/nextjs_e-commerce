@@ -20,7 +20,7 @@ export {paypalCheckPayment} from './payments/paypal-check-payment';
 export {authenticate} from './auth/login';
 export {login} from './auth/login';
 export {logout} from './auth/logout';
-export {registerUser} from './auth/register';
+export {registerUser} from './auth/register-user';
 
 export {getCountries} from './country/get-countries';
 
