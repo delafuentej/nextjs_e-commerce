@@ -38,7 +38,7 @@ const topMenuCenterItems = [
 export const TopMenu = () => {
 
   const openMenu = useUIStore( state => state.openSidebar);
-  const totalItems = useCartStore ( state => state.getTotalItems());
+  const totalItems = useCartStore( state => state.getTotalItems());
 
   //useState => to obtain totalItems from client side
   const [loaded, setLoaded] = useState(false);

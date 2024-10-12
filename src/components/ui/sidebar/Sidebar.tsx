@@ -4,13 +4,15 @@ import React from 'react';
 import { useSession } from 'next-auth/react';
 import { IoPersonOutline, IoCloseOutline, IoLogInOutline, IoLogOutOutline, IoPeopleOutline, IoSearchOutline, IoShirtOutline, IoTicketOutline } from 'react-icons/io5'
 import { SidebarItem } from './SidebarItem';
-import { useUIStore } from '@/store';
+import { useCartStore, useUIStore } from '@/store';
 import { clsx } from 'clsx';
 import { logout } from '@/actions';
 
 
 export const Sidebar = () => {
-   
+ 
+ 
+        const clearCart = useCartStore(state => state.clearCart)
         const isSidebarOpen = useUIStore(state => state.isSidebarOpen);
         const closeMenu = useUIStore( state => state.closeSidebar);
 
@@ -109,7 +111,7 @@ export const Sidebar = () => {
                 href='/'
                 label='Logout'
                 icon={IoLogOutOutline}
-                onClick = {() =>{ logout(); closeMenu() }}
+                onClick = {() =>{ logout(); closeMenu(); clearCart() }}
         />
               ) :
               (
