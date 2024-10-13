@@ -35,7 +35,7 @@ export const LoginForm = () => {
         
         >E-Mail</label>
         <input
-          className="px-5 py-2 border bg-purple-100 rounded focus:outline-none focus:ring-2 focus:ring-purple-500 transition duration-300"
+          className="input-auth"
           type="email" 
           name="email"
         />
@@ -46,7 +46,7 @@ export const LoginForm = () => {
         className="text-sm font-semibold"
         >Password</label>
         <input
-          className="px-5 py-2 border bg-purple-100 rounded focus:outline-none focus:ring-2 focus:ring-purple-500 transition duration-300"
+          className="input-auth"
           type="password" 
           name="password"
         />
@@ -79,7 +79,7 @@ export const LoginForm = () => {
 
         <Link
           href="/auth/new-account" 
-          className="bg-purple-500 hover:bg-purple-600 transition-colors duration-300 rounded text-white py-2 font-bold text-center">
+          className="btn btn-primary">
           Create a new account
         </Link>
 

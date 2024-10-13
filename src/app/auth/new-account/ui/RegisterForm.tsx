@@ -63,7 +63,7 @@ export const RegisterForm = () => {
         autoFocus
         className={
             clsx(
-                "px-5 py-2 border bg-purple-100 rounded focus:outline-none focus:ring-2 focus:ring-purple-500 transition duration-300",
+                "input-auth",
                 {
                 'border-red-500': errors.firstName
                 }
@@ -87,7 +87,7 @@ export const RegisterForm = () => {
         autoFocus
         className={
             clsx(
-                "px-5 py-2 border bg-purple-100 rounded focus:outline-none focus:ring-2 focus:ring-purple-500 transition duration-300",
+                "input-auth",
                 {
                 'border-red-500': errors.lastName
                 }
@@ -108,10 +108,10 @@ export const RegisterForm = () => {
       htmlFor="email">E-Mail</label>
       <input
         id='email'
-        autoFocus
+        autoFocus 
         className={
             clsx(
-                "px-5 py-2 border bg-purple-100 rounded focus:outline-none focus:ring-2 focus:ring-purple-500 transition duration-300",
+                "input-auth",
                 {
                 'border-red-500': errors.email
                 }
@@ -142,7 +142,7 @@ export const RegisterForm = () => {
         autoFocus
         className={
             clsx(
-                "px-5 py-2 border bg-purple-100 rounded focus:outline-none focus:ring-2 focus:ring-purple-500 transition duration-300",
+                "input-auth",
                 {
                 'border-red-500': errors.password
                 }
@@ -158,7 +158,7 @@ export const RegisterForm = () => {
            
       <button
        
-        className="bg-purple-500 hover:bg-purple-300 rounded text-white p-2 font-bold">
+        className="btn btn-primary">
         Create 
         </button>
 
@@ -171,7 +171,7 @@ export const RegisterForm = () => {
 
       <Link
         href="/auth/login" 
-        className="bg-purple-500 hover:bg-purple-300 rounded text-white p-2 font-bold text-center">
+        className="btn btn-primary">
         Login
       </Link>
 
