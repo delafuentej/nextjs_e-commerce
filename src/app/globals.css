@@ -49,6 +49,7 @@ body {
   animation-name: fadeIn;
 }
 
+/* button- btn */
 
 .btn-primary {
   @apply bg-purple-500 hover:bg-purple-300 text-center text-white py-2 px-4 rounded transition-all cursor-pointer font-bold;
@@ -60,8 +61,23 @@ body {
 
 
 .btn-disabled {
-  @apply bg-gray-300 text-white py-2 px-4 rounded transition-all;
+  @apply bg-gray-300 text-white py-2 px-4 rounded transition-all disabled:opacity-75
 }
+
+/* chevron */
+.chevron-btn {
+  @apply mr-2 hover:shadow-md hover:font-bold text-white  bg-purple-500  hover:bg-purple-400 relative block py-1.5 px-3  border-0  outline-none transition-all duration-300 rounded  focus:shadow
+}
+.chevron-btn-right {
+  @apply  ml-2 hover:shadow-md hover:font-bold text-white  bg-purple-500   hover:bg-purple-400 relative block py-1.5 px-3  border-0  outline-none transition-all duration-300 rounded  focus:shadow
+}
+
+.chevron-disabled {
+  @apply bg-gray-400 text-white  rounded transition-all shadow-2xl relative block py-1.5 px-3 border-0  outline-none  duration-300 disabled:opacity-75
+}
+
+
+/* input */
 
 .input-auth {
   @apply px-5 py-2 border bg-purple-100 rounded focus:outline-none focus:ring-2 focus:ring-purple-500 transition duration-300;

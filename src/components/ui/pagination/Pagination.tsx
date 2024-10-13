@@ -54,9 +54,17 @@ export const Pagination = ({totalPages}: Props) => {
 
         <li className="page-item">
             <Link
-            className="mr-2 hover:shadow-md hover:font-bold hover:text-white  bg-purple-400 page-link relative block py-1.5 px-3  border-0  outline-none transition-all duration-300 rounded text-gray-800 focus:shadow-none"
+            className={
+                clsx(
+                    "chevron-btn", 
+                    {
+                        'chevron-disabled shadow-xl': currentPage === 1,
+                        
+                    }
+                )
+            }
             href={createPageUrl(currentPage - 1)} >
-                <IoChevronBackOutline size={30}/>
+                <IoChevronBackOutline size={25}/>
             </Link>
         </li>
 
@@ -69,9 +77,9 @@ export const Pagination = ({totalPages}: Props) => {
                  <Link
                     className={
                         clsx(
-                            "page-link relative block py-1.5 px-3   border-0 outline-none transition-all duration-300 rounded text-gray-800 hover:text-gray-800 hover:bg-purple-300 focus:shadow-none",
+                            "page-link relative block py-1.5 px-3   mx-1 border-0 outline-none transition-all duration-300 rounded hover:bg-purple-400 hover:text-white hover:font-bold focus:shadow-none",
                             {
-                                'shadow-md font-bold text-white bg-purple-600 hover:bg-purple-400 hover:text-gray-100' : page === currentPage
+                                'shadow-md font-bold text-white bg-purple-500 hover:bg-purple-400 hover:text-gray-100' : page === currentPage
                             }
                         )
                     }
@@ -85,9 +93,17 @@ export const Pagination = ({totalPages}: Props) => {
 
         <li className="page-item">
             <Link
-            className="ml-2 hover:shadow-md hover:font-bold hover:text-white  bg-purple-400 hover:bg-purple-400 page-link relative block py-1.5 px-3  border-0  outline-none transition-all duration-300 rounded text-gray-800 focus:shadow-none"
+            className={
+                clsx(
+                    "chevron-btn mx-2",
+                    {
+                        'chevron-disabled': currentPage === totalPages,
+                        ' hover:bg-purple-400 ': currentPage !== totalPages,
+                    }
+                )
+            }
             href={createPageUrl( currentPage + 1)}>
-                <IoChevronForwardOutline size={30}/>
+                <IoChevronForwardOutline size={25}/>
             </Link>
         </li>
       </ul>
