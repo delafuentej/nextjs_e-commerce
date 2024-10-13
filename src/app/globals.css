@@ -61,15 +61,12 @@ body {
 
 
 .btn-disabled {
-  @apply bg-gray-300 text-white py-2 px-4 rounded transition-all disabled:opacity-75
+  @apply bg-gray-300 text-white py-2 px-4 rounded transition-all disabled:opacity-75;
 }
 
 /* chevron */
 .chevron-btn {
   @apply mr-2 hover:shadow-md hover:font-bold text-white  bg-purple-500  hover:bg-purple-400 relative block py-1.5 px-3  border-0  outline-none transition-all duration-300 rounded  focus:shadow
-}
-.chevron-btn-right {
-  @apply  ml-2 hover:shadow-md hover:font-bold text-white  bg-purple-500   hover:bg-purple-400 relative block py-1.5 px-3  border-0  outline-none transition-all duration-300 rounded  focus:shadow
 }
 
 .chevron-disabled {

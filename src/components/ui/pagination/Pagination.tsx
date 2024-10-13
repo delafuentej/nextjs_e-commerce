@@ -58,8 +58,7 @@ export const Pagination = ({totalPages}: Props) => {
                 clsx(
                     "chevron-btn", 
                     {
-                        'chevron-disabled shadow-xl': currentPage === 1,
-                        
+                        'chevron-disabled shadow-xl pointer-events-none': currentPage === 1,
                     }
                 )
             }
@@ -97,7 +96,7 @@ export const Pagination = ({totalPages}: Props) => {
                 clsx(
                     "chevron-btn mx-2",
                     {
-                        'chevron-disabled': currentPage === totalPages,
+                        'chevron-disabled pointer-events-none': currentPage === totalPages,
                         ' hover:bg-purple-400 ': currentPage !== totalPages,
                     }
                 )
