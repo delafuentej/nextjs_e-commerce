@@ -121,7 +121,7 @@ export const PlaceOrder = () => {
     onClick={onPlaceOrder}
     className={
       clsx({
-         "mt-5 mb-2 w-full bg-purple-500 font-bold hover:bg-purple-300 text-center text-white p-2 rounded": !isPlacingOrder,
+         "btn btn-primary text-lg mt-5 mb-2 w-full": !isPlacingOrder,
          "btn-disabled w-full": isPlacingOrder,
 
       })

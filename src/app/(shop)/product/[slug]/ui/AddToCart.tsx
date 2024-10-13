@@ -65,8 +65,8 @@ export const AddToCart = ({product}:Props) => {
          {/* button : add to cart */}
         <button 
           onClick={addToCart}
-          className="btn bg-purple-500 font-bold text-white py-2 px-4 rounded
-           my-5 hover:bg-purple-900">
+          className="btn btn-primary my-4 py-2 px-4"
+          >
             Add to Cart
           </button>
     

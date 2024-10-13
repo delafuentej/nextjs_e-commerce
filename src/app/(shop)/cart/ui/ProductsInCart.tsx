@@ -63,7 +63,7 @@ export const ProductsInCart = () => {
 
                     <button 
                     onClick={() => removeProduct(product)}
-                    className="mt-3 bg-purple-500 hover:bg-purple-300 text-white p-2 rounded-lg"
+                    className="mt-3 btn btn-primary"
                     >
                       Remove
                     </button>

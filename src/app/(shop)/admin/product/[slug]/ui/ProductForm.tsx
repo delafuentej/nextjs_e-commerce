@@ -179,7 +179,7 @@ export const ProductForm = ({ product, categories }: Props) => {
 
       
 
-        <button className="bg-purple-500 hover:bg-purple-300 text-white w-full font-bold rounded-md p-2">
+        <button className="btn btn-primary w-full text-lg">
           Save
         </button>
       </div>
@@ -214,7 +214,7 @@ export const ProductForm = ({ product, categories }: Props) => {
                     clsx(
                       'p-3  cursor-pointer flex justify-center items-center w-10 h-10 mr-2 border rounded-md font-bold transition-all',
                       {
-                        'bg-purple-500 text-white': getValues('sizes').includes(size),
+                        'btn btn-primary rounded-lg': getValues('sizes').includes(size),
                       }
                     )
                   }

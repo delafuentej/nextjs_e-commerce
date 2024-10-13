@@ -23,7 +23,7 @@ export const SizeSelector = ({availableSizes, selectedSize, onSizeSelected}: Pro
                         clsx(
                             "mx-2 text-lg",
                             {
-                                'bg-purple-500 p-2 rounded-lg font-bold text-white': size === selectedSize
+                                'btn btn-primary': size === selectedSize
                             }
                         )
                         }

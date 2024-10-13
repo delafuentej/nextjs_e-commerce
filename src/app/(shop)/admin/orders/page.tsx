@@ -83,7 +83,7 @@ export default async function Orders({searchParams}:Props) {
   
                   </td>
                   <td className="text-sm text-gray-900 font-light px-6 ">
-                    <Link href={`/orders/${order.id}`} className="bg-purple-500 hover:bg-purple-300 p-2 text-white font-bold hover:bg-purple-400 rounded ">
+                    <Link href={`/orders/${order.id}`} className="btn btn-primary">
                       Order view
                     </Link>
                   </td>

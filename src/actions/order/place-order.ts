@@ -13,7 +13,6 @@ interface ProductToOrder {
 
 export const placeOrder = async( productIds: ProductToOrder[], address: Address) => {
 
-   
     // to obtain userId from server side
     const session = await auth();
 
@@ -102,6 +101,14 @@ export const placeOrder = async( productIds: ProductToOrder[], address: Address)
             }
         })
 
+
+        const {country, userId: _userId, id,...restAddress} = address;
+         
+        console.log('restAddress',{restAddress})
+  
+
+
+
         // create order - Header - Details
          const order = await tx.order.create({
             data: {
@@ -127,17 +134,14 @@ export const placeOrder = async( productIds: ProductToOrder[], address: Address)
         // validate, if price  = 0, throw error
 
         // create address order
-         const {country, _userId, id,...restAddress} = address;
-         
-           console.log('restAddress',{restAddress})
         const orderAddress = await tx.orderAddress.create({
-           data: {
-               ...restAddress,
-                 countryId: country,
-                 orderId: order.id,
-               
-            }
-        })
+            data: {
+                ...restAddress,
+                  countryId: country,
+                  orderId: order.id,
+                
+             }
+         })
 //         console.log({orderAddress})
         return {
             updatedProducts: updatedProducts,

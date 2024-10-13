@@ -11,7 +11,7 @@ export default function Empty() {
 
        <Link
        href='/'
-       className="bg-purple-500 hover:bg-purple-300 rounded text-white p-2 text-xl"
+       className="btn btn-primary text-xl"
        >
         Go Back
        </Link>

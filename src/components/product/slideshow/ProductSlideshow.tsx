@@ -90,7 +90,6 @@ export const ProductSlideshow = ({images ,title, className}: Props) => {
        
       </Swiper>
 
-
     </div>
    
   )

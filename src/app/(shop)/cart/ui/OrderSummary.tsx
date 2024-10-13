@@ -52,7 +52,7 @@ export const OrderSummary = () => {
       <span className="text-2xl mt-5 text-right font-bold">{`${currencyFormat(total)}`}</span>
 
     </div>
-    <div className="mt-5 mb-2 w-full bg-purple-500 font-bold hover:bg-purple-300 text-center text-white p-2 rounded">
+    <div className="btn btn-primary text-xl mt-5 mb-2 w-full">
           <Link
             className="text-center"
             href='/checkout/address'

@@ -124,11 +124,8 @@ export default async function Products({searchParams}:Props) {
                       {product!.sizes.join(', ')}
                   </td>
 
-    
                 </tr>
               
-
-
               ))
             }
 
