@@ -21,15 +21,15 @@ export const SidebarItem = ({href, label, icon: Icon, onClick}: Props) => {
     href={href}
     className={
       clsx(
-        'flex items-center mt-10  hover:bg-purple-400  m-2 p-2 rounded-md transition-all   font-bold hover:text-white hover:font-bold', {
+        'flex items-center mt-10  hover:bg-purple-800  m-2 p-2 rounded-md transition-all   font-bold hover:text-white hover:font-bold', {
            'bg-purple-500 text-white font-bold animate-pulse transition-all': href === currentPath,
          }
        )
     }
     onClick= {onClick}
   >
-    <Icon size={30} />
-    <span className='text-xl ml-3'>{label}</span>
+    <Icon className="text-white" size={30} />
+    <span className='text-xl ml-3 text-white'>{label}</span>
   </Link>
   )
 }

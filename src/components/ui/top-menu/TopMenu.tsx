@@ -7,7 +7,8 @@ import { useCartStore, useUIStore } from '@/store';
 import { TopMenuCenterItem } from './TopMenuCenterItem';
 
 
-import { IoSearchOutline, IoCartOutline } from 'react-icons/io5';
+import { IoSearchOutline, IoCartOutline, IoMenuSharp, IoMenuOutline } from 'react-icons/io5';
+import { IoIosMenu, IoMdMenu, IoMdTrendingUp } from 'react-icons/io';
 
 
 
@@ -48,7 +49,7 @@ export const TopMenu = () => {
   },[]);
 
   return (
-    <nav className='flex px-5 justify-between items-center w-full'>
+    <nav className='flex px-5 justify-between items-center w-full  bg-purple-500 opacity-80 fixed top-0 z-10 overflow-visible'>
       {/* logo */}
       <div>
         <Link
@@ -95,7 +96,7 @@ export const TopMenu = () => {
             {
              (loaded && totalItems > 0) && (
               <span 
-                className='px-1 absolute text-xs rounded-full  font-bold -top-1 -right-1 text-white bg-purple-500 animate-bounce'>
+                className='px-1 absolute text-xs rounded-full  font-bold -top-1 -right-1 text-white bg-gray-900 animate-bounce'>
                 {totalItems}
               </span>
              )
@@ -111,7 +112,7 @@ export const TopMenu = () => {
         onClick={openMenu}
         className='m-2 p-2 font-bold rounded-md transition-all hover:bg-purple-400 hover:text-white'
         >
-          Menu
+         <IoMenuSharp size={25} />
         </button>
       </div>
      

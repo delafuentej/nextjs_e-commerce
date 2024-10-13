@@ -70,7 +70,7 @@ body {
 }
 
 .chevron-disabled {
-  @apply bg-gray-400 text-white  rounded transition-all shadow-2xl relative block py-1.5 px-3 border-0  outline-none  duration-300 disabled:opacity-75
+  @apply bg-gray-400 text-white  rounded transition-all shadow-2xl relative block py-1.5 px-3 border-0  outline-none  duration-300 opacity-40
 }
 
 

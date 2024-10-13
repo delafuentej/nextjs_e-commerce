@@ -56,7 +56,7 @@ export const Sidebar = () => {
           // slide effect
           className={
             clsx(
-              'fixed p-5 right-0 top-0 w-[500px] h-screen bg-purple-50 z-20  shadow-2xl transform transition-all duration-300',
+              'fixed p-5 right-0 top-0 w-[500px] h-screen z-20 bg-black opacity-80 shadow-2xl transform transition-all duration-300',
               {
                 "translate-x-full": !isSidebarOpen
               }
@@ -65,7 +65,7 @@ export const Sidebar = () => {
         >
           <IoCloseOutline 
             onClick={closeMenu }
-            className='absolute top-5 right-5 cursor-pointer' 
+            className='absolute top-5 right-5 cursor-pointer text-white animate-pulse' 
             size={50}
           />
           {/* input */}
@@ -77,7 +77,7 @@ export const Sidebar = () => {
             size={20}
             />
             <input 
-            className='w-full  bg-gray-50 rounded pl-10 py-1 pr-10 border-b-2 text-xl border-gray-200 focus:outline-none focus:border-purple-400'
+            className='w-full bg-neutral-50 font-bold rounded pl-10 py-1 pr-10 border-b-2 text-xl border-purple-900 focus:outline-none focus:border-purple-400'
             type='text'
             placeholder='Search'
 

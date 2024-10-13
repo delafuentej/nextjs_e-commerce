@@ -12,16 +12,16 @@ export const UsersTable = ({users}:Props) => {
     <table className="min-w-full shadow-lg rounded-lg">
     <thead className="bg-purple-500 border-b text-white font-bold">
       <tr>
-        <th scope="col" className="text-sm font-bold px-6 py-4 text-left">
+        <th scope="col" className="text-md font-bold px-6 py-4 text-left">
           #ID
         </th>
-        <th scope="col" className="text-sm font-bold  px-6 py-4 text-left">
+        <th scope="col" className="text-md font-bold  px-6 py-4 text-left">
         Full Name
         </th>
-        <th scope="col" className="text-sm font-bold  px-6 py-4 text-left">
+        <th scope="col" className="text-md font-bold  px-6 py-4 text-left">
         Email
         </th>
-        <th scope="col" className="text-sm font-bold  px-6 py-4 text-left">
+        <th scope="col" className="text-md font-bold  px-6 py-4 text-left">
           Role
         </th>
       

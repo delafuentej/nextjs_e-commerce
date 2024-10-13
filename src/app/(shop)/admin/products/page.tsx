@@ -44,22 +44,22 @@ export default async function Products({searchParams}:Props) {
               {/* <th scope="col" className="text-sm  px-6 py-4 text-left  w-32 sm:w-auto">
               Product-Id
               </th> */}
-              <th scope="col" className="text-sm  px-6 py-4 text-left  sm:w-18 ">
+              <th scope="col" className="text-md  px-6 py-4 text-left  sm:w-18 ">
               Photo
               </th>
-              <th scope="col" className="text-sm  px-6 py-4 text-left w-32 sm:w-auto">
+              <th scope="col" className="text-md  px-6 py-4 text-left w-32 sm:w-auto">
                 Title
               </th>
-              <th scope="col" className="text-sm px-6 py-4 text-left  sm:w-10">
+              <th scope="col" className="text-md px-6 py-4 text-left  sm:w-10">
                 Price
               </th>
-              <th scope="col" className="text-sm  px-6 py-4 text-left  sm:w-10">
+              <th scope="col" className="text-md  px-6 py-4 text-left  sm:w-10">
                 Gender
               </th>
-              <th scope="col" className="text-sm  px-6 py-4 text-left  sm:w-10">
+              <th scope="col" className="text-md  px-6 py-4 text-left  sm:w-10">
                 Stock
               </th>
-              <th scope="col" className="text-sm  px-6 py-4 text-left">
+              <th scope="col" className="text-md  px-6 py-4 text-left">
                 Sizes
               </th>
             </tr>

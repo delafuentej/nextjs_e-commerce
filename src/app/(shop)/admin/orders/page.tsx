@@ -31,18 +31,18 @@ export default async function Orders({searchParams}:Props) {
 
       <div className="mb-10">
         <table className="min-w-full shadow-lg rounded-lg">
-          <thead className="bg-purple-500  text-white border-b ">
+          <thead className="bg-purple-500  text-white border-b">
             <tr>
-              <th scope="col" className="text-sm px-6 py-4 text-left font-extrabold">
+              <th scope="col" className="text-md px-6 py-4 text-left font-extrabold">
                 #ID
               </th>
-              <th scope="col" className="text-sm  px-6 py-4 text-left font-extrabold">
+              <th scope="col" className="text-md  px-6 py-4 text-left font-extrabold">
               Full Name
               </th>
-              <th scope="col" className="text-sm px-6 py-4 text-left font-extrabold">
+              <th scope="col" className="text-md px-6 py-4 text-left font-extrabold">
                 Status
               </th>
-              <th scope="col" className="text-sm  px-6 py-4 text-left font-extrabold">
+              <th scope="col" className="text-md  px-6 py-4 text-left font-extrabold">
                 Options
               </th>
             </tr>
