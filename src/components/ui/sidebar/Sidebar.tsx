@@ -10,7 +10,9 @@ import { logout } from '@/actions';
 
 
 export const Sidebar = () => {
- 
+
+       
+       
  
         const clearCart = useCartStore(state => state.clearCart)
         const isSidebarOpen = useUIStore(state => state.isSidebarOpen);
@@ -22,6 +24,13 @@ export const Sidebar = () => {
         const isAuthenticated : boolean = !!session?.user;
 
         const isAdmin : boolean = session?.user.role === 'admin';
+
+
+        const refreshPage = () => {
+          window.location.replace('/auth/login');
+        }
+
+        
        //console.log('session', session)
        // console.log('isAdmin',isAdmin);
   return (
@@ -111,7 +120,7 @@ export const Sidebar = () => {
                 href='/'
                 label='Logout'
                 icon={IoLogOutOutline}
-                onClick = {() =>{ logout(); closeMenu(); clearCart() }}
+                onClick = {() =>{ logout(); closeMenu(); clearCart(); refreshPage() }}
         />
               ) :
               (
