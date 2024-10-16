@@ -1,3 +1,5 @@
+import { SearchBar } from './search/SearchInput';
+
 //provider
 export {Providers} from './providers/Providers';
 
@@ -23,4 +25,5 @@ export {ProductMobileSlideshow} from './product/slideshow/ProductMobileSlideshow
 export {ProductSlideshow} from './product/slideshow/ProductSlideshow';
 export {StockLabel} from './product/stock-label/StockLabel';
 export {ProductImage} from './product/product-image/ProductImage';
-
+// searchInput
+export {SearchInput} from './search/SearchInput';

@@ -7,8 +7,8 @@ import { useCartStore, useUIStore } from '@/store';
 import { TopMenuCenterItem } from './TopMenuCenterItem';
 
 
-import { IoSearchOutline, IoCartOutline, IoMenuSharp, IoMenuOutline } from 'react-icons/io5';
-import { IoIosMenu, IoMdMenu, IoMdTrendingUp } from 'react-icons/io';
+import { IoSearchOutline, IoCartOutline, IoMenuSharp} from 'react-icons/io5';
+
 
 
 
@@ -78,10 +78,10 @@ export const TopMenu = () => {
       <div className='flex items-center'>
 
         <Link
-          className='mx-2'
+          className='mx-2  p-2 hover:bg-purple-400 rounded hover:text-white hover:fade-in'
           href='/search'
         >
-          <IoSearchOutline className='w-5 h-5'/>
+          <IoSearchOutline size={20} className='w-5 h-5'/>
         </Link>
 
 

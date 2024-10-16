@@ -7,6 +7,7 @@ import { SidebarItem } from './SidebarItem';
 import { useCartStore, useUIStore } from '@/store';
 import { clsx } from 'clsx';
 import { logout } from '@/actions';
+import { SearchInput } from '@/components/search/SearchInput';
 
 
 export const Sidebar = () => {
@@ -70,9 +71,10 @@ export const Sidebar = () => {
           />
           {/* input */}
           <div
-            className='relative mt-14'
+            className='relative mt-14 left-5'
           >
-            <IoSearchOutline 
+            <SearchInput />
+            {/* <IoSearchOutline 
               className='absolute top-2 left-2'
             size={20}
             />
@@ -82,7 +84,7 @@ export const Sidebar = () => {
             placeholder='Search'
 
 
-            />
+            /> */}
           </div>
 
           {/* options menu */}
