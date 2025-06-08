@@ -4,7 +4,7 @@ Welcome to **E-Commerce Fashion Store** — a modern online clothing store featu
 
 ## 🖼️ Preview
 
-<img src="./public/gif/eshop.gif" alt="App Preview" style="width:600px;" />
+<img src="./public/gif/eshop.gif" alt="App Preview" style="width:800px;" />
 
 ---
 
