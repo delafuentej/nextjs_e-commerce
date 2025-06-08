@@ -22,6 +22,10 @@ Welcome to **E-Commerce Fashion Store** — a modern online clothing store featu
   - Create/Edit products
   - Payments confirmations.
   - Manage orders and users
+- 🛡️ Security
+  - Passwords are hashed using bcryptjs
+  - Route protection via NextAuth and middleware
+  - Input validation with Zod
 
 ---
 
@@ -33,6 +37,7 @@ Welcome to **E-Commerce Fashion Store** — a modern online clothing store featu
 - **Validation**: Zod
 - **Global state**: Zustand
 - **Styling**: Tailwind CSS
+- **Containerization**: Docker + Docker Compose
 
 ## 🚀 How to Run This Project
 
