@@ -11,12 +11,16 @@ Welcome to **E-Commerce Fashion Store** — a modern online clothing store featu
 ## ✨ Key Features
 
 - 👤 Customer registration and login
+- Search for articles by words
+- Sorting of items by gender and size availability
 - Modification of shipping data
 - 🛒 Persistent shopping cart
 - 📦 Order management/Check out
 - 💳 PayPal payment integration
+
 - 🛠️ **Admin Dashboard**:
   - Create/Edit products
+  - Payments confirmations.
   - Manage orders and users
 
 ---
